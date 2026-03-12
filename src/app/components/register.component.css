@@ -1,0 +1,80 @@
+.page{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  width:420px;
+  border-radius:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.logo{
+  text-align:left;
+  margin-bottom:20px;
+}
+
+.logo img{
+  width:120px;
+}
+
+h2{
+  margin-bottom:30px;
+}
+
+.form-group{
+  text-align:left;
+  margin-bottom:15px;
+}
+
+label{
+  font-size:14px;
+  display:block;
+  margin-bottom:5px;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:14px;
+}
+
+input:focus{
+  outline:none;
+  border-color:#8BC34A;
+}
+
+.btn{
+  width:100%;
+  margin-top:15px;
+  padding:10px;
+  background:#8BC34A;
+  border:none;
+  color:white;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#7cb342;
+}
+
+.login-link{
+  margin-top:20px;
+  font-size:14px;
+}
+
+.login-link a{
+  color:#1a73e8;
+  text-decoration:none;
+}
