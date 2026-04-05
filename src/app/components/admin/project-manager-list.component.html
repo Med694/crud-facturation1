@@ -1,0 +1,101 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">FIN<span>LOGIK</span></h2>
+
+    <ul class="menu">
+      <li routerLink="/dashboard" routerLinkActive="active-item">
+  Dashboard
+</li>
+      <li class="active-item">Project Manager</li>
+      <li>Employee</li>
+      <li>Finance Manager</li>
+      <li>Client</li>
+      <li routerLink="/project-list" routerLinkActive="active-item">
+  Projects
+</li>
+      <li>Admin Management</li>
+    </ul>
+
+    <button class="logout" (click)="logout()">
+  Logout
+</button>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- NAVBAR -->
+    <div class="topbar">
+      <span>You're Logged as Administrator.</span>
+
+      <div class="user">
+        <span>Admin</span>
+        <div class="avatar"></div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <h3>Project Manager List</h3>
+
+      <div class="header">
+        <input type="text" placeholder="Search..." class="search" />
+        <button class="add-btn" routerLink="/create-project-manager-details">
+          Add Project Managers
+        </button>
+      </div>
+
+      <table class="pm-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Matricule</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Ville</th>
+            <th>Status</th>
+            <th>Détails</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let pm of data">
+            <td>{{ pm.id }}</td>
+            <td>{{ pm.fullName }}</td>
+            <td>{{ pm.matricule }}</td>
+            <td>{{ pm.email }}</td>
+            <td>{{ pm.phone }}</td>
+            <td>{{ pm.city }}</td>
+
+            <td>
+              <span class="status active" *ngIf="pm.status === 'Active'">Active</span>
+              <span class="status inactive" *ngIf="pm.status !== 'Active'">Inactive</span>
+            </td>
+
+            <td>
+              <a [routerLink]="['/view-project-manager', pm.id]" class="view">
+                View
+              </a>
+            </td>
+
+            <td>
+              <a [routerLink]="['/edit-project-manager', pm.id]" class="edit">
+                Edit
+              </a>
+              /
+              <a (click)="delete(pm.id)" class="delete">
+                Delete
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

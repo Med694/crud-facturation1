@@ -1,0 +1,123 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- LOGO -->
+    <div class="logo">
+      FIN<span>LOGIK</span>
+    </div>
+
+    <!-- MENU -->
+    <ul class="menu">
+
+      <li class="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </li>
+
+     <li routerLink="/project-manager-list" routerLinkActive="active">
+  <mat-icon>work</mat-icon>
+  <span>Project Manager</span>
+</li>
+
+      <li>
+        <mat-icon>groups</mat-icon>
+        <span>Employee</span>
+      </li>
+
+      <li>
+        <mat-icon>account_balance</mat-icon>
+        <span>Finance Manager</span>
+      </li>
+
+      <li>
+        <mat-icon>person</mat-icon>
+        <span>Client</span>
+      </li>
+      <li routerLink="/project-manager-list" routerLinkActive="active">
+        <mat-icon>folder</mat-icon>
+        <span>Projects</span>
+      </li>
+
+      <li>
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Admin Management</span>
+      </li>
+
+    </ul>
+
+    <!-- LOGOUT -->
+    <button mat-raised-button color="warn" class="logout" (click)="logout()">
+  <mat-icon>logout</mat-icon>
+  <span>Logout</span>
+</button>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    
+
+    <h1>Admin Dashboard</h1>
+
+  
+
+    <!-- STATS -->
+    <div class="stats-grid">
+
+      <div class="card green">
+        <mat-icon>work</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.projectManagers }}</h2>
+          <p>Project Manager</p>
+        </div>
+      </div>
+
+      <div class="card purple">
+        <mat-icon>groups</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.employees }}</h2>
+          <p>Employees</p>
+        </div>
+      </div>
+
+      <div class="card orange">
+        <mat-icon>person</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.clients }}</h2>
+          <p>Clients</p>
+        </div>
+      </div>
+
+      <div class="card yellow">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.admins }}</h2>
+          <p>Admins</p>
+        </div>
+      </div>
+
+      <div class="card blue">
+        <mat-icon>folder</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.projects }}</h2>
+          <p>Projects</p>
+        </div>
+      </div>
+
+      <div class="card cyan">
+        <mat-icon>account_balance</mat-icon>
+        <div class="card-info">
+          <h2>{{ stats.financeManagers }}</h2>
+          <p>Finance Manager</p>
+        </div>
+      </div>
+
+    </div>
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

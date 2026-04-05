@@ -1,0 +1,82 @@
+.forgot-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f2f5; /* un fond un peu plus doux */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.forgot-card {
+    width: 400px;
+    background: #fff;
+    padding: 40px 30px; /* un peu plus d'espace horizontal */
+    text-align: center;
+    border-radius: 12px; /* coins plus arrondis */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.forgot-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+h2, h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.code-input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.code-input:focus {
+    outline: none;
+    border-color: #7cb342;
+    box-shadow: 0 0 8px rgba(124, 179, 66, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #7cb342;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #689f38;
+    transform: translateY(-2px);
+}
+
+.message {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #d32f2f; /* rouge pour les messages d'erreur */
+    min-height: 20px; /* évite que le texte bouge quand il apparaît */
+}

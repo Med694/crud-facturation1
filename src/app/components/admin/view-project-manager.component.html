@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card">
+    <h2>Détails Project Manager</h2>
+
+    <div class="info">
+      <p><strong>Full Name:</strong> {{ pm?.fullName }}</p>
+      <p><strong>Email:</strong> {{ pm?.email }}</p>
+      <p><strong>Matricule:</strong> {{ pm?.matricule }}</p>
+      <p><strong>Phone:</strong> {{ pm?.phone }}</p>
+      <p><strong>City:</strong> {{ pm?.city }}</p>
+      <p><strong>Projects:</strong></p>
+
+<ul *ngIf="pm?.projects?.length > 0; else noProjects">
+  <li *ngFor="let project of pm.projects">
+    {{ project }}
+  </li>
+</ul>
+
+<ng-template #noProjects>
+  <p>Aucun projet</p>
+</ng-template>
+      <p><strong>Status:</strong> {{ pm?.status }}</p>
+    </div>
+
+    <button class="cancel-btn" (click)="cancel()">Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container" *ngIf="project">
+
+  <div class="card">
+
+    <h2>Détails du projet</h2>
+
+    <div class="info">
+      <p><strong>ID :</strong> {{ project.id }}</p>
+      <p><strong>Nom :</strong> {{ project.name }}</p>
+
+      <p><strong>Project Manager :</strong></p>
+
+      <div *ngIf="project.projectManager; else noPm">
+        <p><strong>Nom :</strong> {{ project.projectManager.fullName }}</p>
+      </div>
+
+      <ng-template #noPm>
+        <span class="status inactive">Non assigné</span>
+      </ng-template>
+    </div>
+
+    <button class="cancel-btn" (click)="cancel()">
+  Retour
+</button>
+
+  </div>
+
+</div>

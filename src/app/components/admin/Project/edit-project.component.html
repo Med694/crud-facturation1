@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+
+    <h2>Edit Project</h2>
+
+    <!-- Nom du projet -->
+    <div class="form-group">
+      <label>Nom du projet</label>
+      <input [(ngModel)]="project.name" />
+    </div>
+
+    <!-- Project Manager -->
+    <div class="form-group">
+      <label>Project Manager</label>
+
+      <select [(ngModel)]="project.projectManagerId">
+        <option [ngValue]="null">-- Aucun --</option>
+
+        <option *ngFor="let pm of projectManagers" [value]="pm.id">
+          {{ pm.fullName }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button class="btn green" (click)="save()">Save</button>
+      <button class="btn gray" (click)="cancel()">Cancel</button>
+    </div>
+
+  </div>
+</div>

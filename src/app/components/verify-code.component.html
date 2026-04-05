@@ -1,0 +1,23 @@
+<div class="forgot-page">
+
+  <div class="forgot-card">
+
+    <img src="téléchargement.jpg" class="logo">
+
+    <h2>Verification Code</h2>
+    <p class="subtitle">We have sent a code to your email</p>
+
+    <input
+      type="text"
+      placeholder="Enter or paste your code"
+      [(ngModel)]="code"
+      class="code-input"
+    >
+
+    <button (click)="verifyCode()">Verify Code</button>
+
+    <p class="message">{{message}}</p>
+
+  </div>
+
+</div>

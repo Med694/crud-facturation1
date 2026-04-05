@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="card">
+    <h3>Create Project Manager Account</h3>
+
+    <div class="form-group">
+      <input [value]="pmId" readonly />
+    </div>
+
+    <div class="form-group">
+      <input [value]="username" readonly />
+    </div>
+
+    <div class="form-group">
+      <input [(ngModel)]="formData.email" placeholder="Email address" />
+    </div>
+
+    <div class="form-group">
+      <input [(ngModel)]="formData.password" type="password" placeholder="Password" />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <input [(ngModel)]="formData.confirmPassword" type="password" placeholder="Confirm Password" />
+    </div>
+
+    <div class="actions">
+      <button class="btn green" (click)="submit()">Ajouter</button>
+      <button class="btn gray">Annuler</button>
+    </div>
+  </div>
+
+</div>

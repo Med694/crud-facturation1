@@ -23,27 +23,26 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      const dto = {
-        email: this.loginForm.value.email!,
-        password: this.loginForm.value.password!
-      };
-      
-      this.auth.login(dto).subscribe({
-        next: (res: any) => {
-          console.log("Response =", res);
-          console.log("Role reçu =", res.role);
+  if (this.loginForm.valid) {
+    const dto = {
+      email: this.loginForm.value.email!,
+      password: this.loginForm.value.password!
+    };
+    
+    this.auth.login(dto).subscribe({
+      next: (res: any) => {
+        console.log("Response =", res);
 
-          alert(res.message);
+        // ✅ sécuriser le token
+        const token = res.token || 'fake-token';
 
-          if (res.role?.toLowerCase().trim() === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/dashboard']);
-          }
-        },
-        error: (err: any) => alert('Identifiants invalides')
-      });
-    }
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', res.role || '');
+
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err: any) => alert('Identifiants invalides')
+    });
   }
+}
 }

@@ -1,0 +1,85 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">FIN<span>LOGIK</span></h2>
+
+    <ul class="menu">
+      <li routerLink="/dashboard" routerLinkActive="active-item">
+  Dashboard
+</li>
+       <li routerLink="/project-manager-list" routerLinkActive="active-item">
+  Project Manager
+</li>
+      <li>Employee</li>
+      <li>Finance Manager</li>
+      <li>Client</li>
+      <li routerLink="/project-list" routerLinkActive="active-item">
+  Projects
+</li>
+      <li>Admin Management</li>
+    </ul>
+    
+
+    <button class="logout" (click)="logout()">Logout</button>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <span>You're Logged as Administrator.</span>
+
+      <div class="user">
+        <span>Admin</span>
+        <div class="avatar"></div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <h3>Projects List</h3>
+
+      <div class="header">
+        <input type="text" placeholder="Search..." class="search" />
+        <button class="add-btn" (click)="create()">Add Projects</button>
+      </div>
+
+      <table class="pm-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Project Manager</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of projects">
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+
+            <td>
+              <span *ngIf="p.projectManager; else noPm">
+                {{ p.projectManager }}
+              </span>
+              <ng-template #noPm>
+                <span class="status inactive">Non assigné</span>
+              </ng-template>
+            </td>
+
+            <td>
+              <a (click)="view(p.id)" class="view">View</a> /
+              <a (click)="edit(p.id)" class="edit">Edit</a> /
+              <a (click)="delete(p.id)" class="delete">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

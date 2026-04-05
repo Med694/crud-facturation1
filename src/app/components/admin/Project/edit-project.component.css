@@ -1,0 +1,101 @@
+/* CONTAINER */
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f6fa, #e9ecf2);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* CARD */
+.card {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* TITLE */
+.card h2 {
+  margin-bottom: 25px;
+  text-align: center;
+  color: #333;
+}
+
+/* FORM GROUP */
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #666;
+}
+
+/* INPUT + SELECT */
+input,
+select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #7ac943;
+  box-shadow: 0 0 5px rgba(122, 201, 67, 0.3);
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+/* BUTTONS */
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* GREEN BUTTON */
+.btn.green {
+  background: #7ac943;
+  color: white;
+  margin-right: 10px;
+}
+
+.btn.green:hover {
+  background: #6ab83a;
+  transform: scale(1.05);
+}
+
+/* GRAY BUTTON */
+.btn.gray {
+  background: #888;
+  color: white;
+}
+
+.btn.gray:hover {
+  background: #666;
+  transform: scale(1.05);
+}
