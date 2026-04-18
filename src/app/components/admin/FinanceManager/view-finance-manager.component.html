@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="card">
+    <h2>Détails Finance Manager</h2>
+
+    <div class="info">
+      <p><strong>Full Name:</strong> {{ fm?.fullName }}</p>
+      <p><strong>Email:</strong> {{ fm?.email }}</p>
+      <p><strong>Matricule:</strong> {{ fm?.matricule }}</p>
+      <p><strong>Téléphone:</strong> {{ fm?.telephone }}</p>
+      <p><strong>Ville:</strong> {{ fm?.ville }}</p>
+      <p><strong>Service:</strong> {{ fm?.service }}</p>
+    </div>
+
+    <button class="cancel-btn" (click)="cancel()">Cancel</button>
+  </div>
+</div>

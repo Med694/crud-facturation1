@@ -1,0 +1,43 @@
+<div class="form-container">
+
+  <h2>Modifier Finance Manager</h2>
+
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label>Nom complet</label>
+      <input [(ngModel)]="formData.fullName" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Matricule</label>
+      <input [(ngModel)]="formData.matricule" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input [(ngModel)]="formData.telephone" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Ville</label>
+      <select [(ngModel)]="formData.ville">
+        <option value="">-- Sélectionner --</option>
+        <option value="Sfax">Sfax</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Service</label>
+      <select [(ngModel)]="formData.service">
+        <option value="">-- Sélectionner --</option>
+        <option value="Finance">Finance</option>
+        <option value="Comptabilité">Comptabilité</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="btn-next" (click)="submit()">Suivant</button>
+
+</div>

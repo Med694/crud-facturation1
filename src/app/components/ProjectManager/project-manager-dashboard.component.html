@@ -1,0 +1,28 @@
+<div *ngFor="let p of data">
+  <h2>{{ p.project }}</h2>
+  <p>Client: {{ p.client }}</p>
+
+  <div *ngFor="let e of p.employees">
+    <h4>{{ e.fullName }} ({{ e.email }} )</h4>
+
+    <div *ngFor="let w of e.workLogs">
+      <p>Hourly Rate: {{ w.hourlyRate }}</p>
+      <p>Total Hours: {{ w.totalHours }}</p>
+    <p>Planned Hours: {{ w.plannedHours }}</p>
+      
+      <p><strong>Détails :</strong></p>
+
+<ul>
+  <li *ngFor="let d of parseDetails(w.detailsJson)">
+    {{ d.date }} → {{ d.hours }} h
+  </li>
+</ul>
+<button (click)="refuseWorklog(p, e, w)">
+  Rejected
+</button>
+<button (click)="approveWorklog(w)"> Approved</button>
+    </div>
+  </div>
+
+  <hr>
+</div>

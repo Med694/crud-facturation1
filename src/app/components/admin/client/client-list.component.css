@@ -1,0 +1,222 @@
+/* GLOBAL */
+body {
+  margin: 0;
+  background: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7ac142;
+  margin-bottom: 25px;
+}
+
+.logo span {
+  color: #222;
+}
+
+/* MENU */
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  color: #555;
+  border-radius: 10px;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.menu li:hover {
+  background: #f5f7fa;
+}
+
+.active-item {
+  background: #7ac142;
+  color: white !important;
+  font-weight: 500;
+}
+
+/* LOGOUT */
+.logout {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #ddd;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.topbar span {
+  color: #666;
+  font-size: 14px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #7ac142;
+  border-radius: 50%;
+}
+
+/* CONTENT */
+.content {
+  padding: 25px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.search {
+  padding: 10px 12px;
+  width: 260px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search:focus {
+  border-color: #7ac142;
+  box-shadow: 0 0 5px rgba(122, 193, 66, 0.3);
+}
+
+/* BUTTON CREATE */
+.add-btn {
+  background: linear-gradient(135deg, #7ac142, #689f38);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* TABLE */
+.pm-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+/* TABLE HEADER */
+.pm-table th {
+  background: #f9fafb;
+  padding: 14px;
+  text-align: left;
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* TABLE ROW */
+.pm-table td {
+  padding: 14px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+  color: #333;
+}
+
+/* HOVER */
+.pm-table tr:hover {
+  background: #f7fdf4;
+}
+
+/* ACTIONS */
+.view {
+  color: #888;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.edit {
+  color: #1976d2;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delete {
+  color: #d32f2f;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.view:hover,
+.edit:hover,
+.delete:hover {
+  text-decoration: underline;
+}
+
+/* LINKS FIX */
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none !important;
+}

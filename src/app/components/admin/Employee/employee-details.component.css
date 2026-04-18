@@ -1,0 +1,69 @@
+/* 🔹 CONTAINER */
+.container {
+  padding: 30px;
+  background: #f5f7fb;
+}
+
+/* 🔹 EMPLOYEE INFO */
+.card {
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.card p {
+  margin: 0;
+  color: #555;
+}
+
+/* 🔹 TITRE */
+.section-title {
+  margin: 20px 0;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* 🔹 LISTE PROJETS */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 🔹 CHAQUE PROJET */
+.project-card {
+  background: #fff;
+  padding: 15px;
+  border-left: 4px solid #7ac943;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* 🔹 TITRE PROJET */
+.project-card h4 {
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* 🔹 TEXT */
+.project-card p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* 🔹 INPUT FILE */
+input[type="file"] {
+  margin-top: 8px;
+  font-size: 13px;
+}
+.result-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef;
+  border-left: 4px solid #007bff;
+}

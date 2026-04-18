@@ -1,0 +1,49 @@
+<div class="form-container" *ngIf="client">
+
+  <h2>Modifier Client</h2>
+
+  <div class="form-group">
+    <label>Nom complet</label>
+    <input [(ngModel)]="client.fullName" type="text">
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input [(ngModel)]="client.email" type="email">
+  </div>
+
+  <div class="form-group">
+    <label>Téléphone</label>
+    <input [(ngModel)]="client.phone" type="text">
+  </div>
+
+  <div class="form-group">
+    <label>Adresse</label>
+    <input [(ngModel)]="client.address" type="text">
+  </div>
+
+  <div class="form-group">
+    <label>Entreprise</label>
+    <input [(ngModel)]="client.company" type="text">
+  </div>
+
+  <!-- 🔥 SELECT PROJETS -->
+  <div class="form-group">
+    <label>Projets</label>
+
+    <select multiple [(ngModel)]="client.projectIds" name="projects">
+      <option *ngFor="let p of allProjects" [ngValue]="p.id">
+        {{ p.name }}
+      </option>
+    </select>
+
+  </div>
+
+  <!-- 🔥 Buttons -->
+  <!-- Buttons -->
+  <div class="button-group">
+    <button class="btn" (click)="update()">Modifier</button>
+    
+  </div>
+
+</div>

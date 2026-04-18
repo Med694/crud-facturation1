@@ -24,24 +24,63 @@ export class LoginComponent {
 
   onSubmit() {
   if (this.loginForm.valid) {
+
     const dto = {
       email: this.loginForm.value.email!,
       password: this.loginForm.value.password!
     };
-    
+
     this.auth.login(dto).subscribe({
+
       next: (res: any) => {
         console.log("Response =", res);
 
-        // ✅ sécuriser le token
-        const token = res.token || 'fake-token';
-
-        localStorage.setItem('token', token);
+        // ✅ stockage
+        localStorage.setItem('token', res.token || '');
         localStorage.setItem('role', res.role || '');
+        localStorage.setItem('userId', res.userId || '');
 
-        this.router.navigate(['/dashboard']);
+        const role = (res.role || '').toLowerCase().replace(/\s/g, '');
+        console.log("ROLE =", role);
+
+        switch (role) {
+
+          case 'admin':
+            this.router.navigate(['/dashboard']);
+            break;
+
+          case 'projectmanager':
+            const pmId = res.projectManagerId; // ✅ IMPORTANT
+
+            if (!pmId) {
+              alert('❌ Aucun Project Manager lié à cet utilisateur');
+              return;
+            }
+
+            localStorage.setItem('pmId', pmId); // optionnel
+
+            this.router.navigate(['/project-manager-dashboard', pmId]); // ✅ BON ID
+            break;
+
+          case 'financemanager':
+            this.router.navigate(['/finance-manager-dashboard']);
+            break;
+
+          case 'user':
+            this.router.navigate(['/employee-dashboard']);
+            break;
+
+          default:
+            alert('❌ Rôle inconnu: ' + res.role);
+            this.router.navigate(['/']);
+            break;
+        }
       },
-      error: (err: any) => alert('Identifiants invalides')
+
+      error: (err: any) => {
+        console.error(err);
+        alert(err?.error || 'Identifiants invalides');
+      }
     });
   }
 }

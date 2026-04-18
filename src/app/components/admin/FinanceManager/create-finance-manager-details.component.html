@@ -1,0 +1,48 @@
+<div class="form-container">
+
+  <h2>Créer Finance Manager - Détails</h2>
+
+  <div class="form-grid">
+
+    <!-- Full Name -->
+    <div class="form-group">
+      <label>Nom complet</label>
+      <input [(ngModel)]="formData.fullName" type="text">
+    </div>
+
+    <!-- Matricule -->
+    <div class="form-group">
+      <label>Matricule</label>
+      <input [(ngModel)]="formData.matricule" type="text">
+    </div>
+
+    <!-- Téléphone -->
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input [(ngModel)]="formData.telephone" type="text">
+    </div>
+
+    <!-- Ville (SELECT) -->
+    <div class="form-group">
+      <label>Ville</label>
+      <select [(ngModel)]="formData.ville">
+        <option value="">-- Choisir --</option>
+        <option value="Sfax">Sfax</option>
+      </select>
+    </div>
+
+    <!-- Service (SELECT) -->
+    <div class="form-group">
+      <label>Service</label>
+      <select [(ngModel)]="formData.service">
+        <option value="">-- Choisir --</option>
+        <option value="Finance">Finance</option>
+        <option value="Comptabilité">Comptabilité</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="btn-next" (click)="submit()">Suivant</button>
+
+</div>

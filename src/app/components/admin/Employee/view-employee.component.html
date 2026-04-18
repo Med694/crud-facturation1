@@ -1,0 +1,21 @@
+<div class="container" *ngIf="employee">
+  <div class="card">
+    <h2>Employee Details</h2>
+
+    <div class="info">
+      <p><strong>Full Name:</strong> {{ employee.fullName }}</p>
+      <p><strong>Email:</strong> {{ employee.email }}</p>
+      <p><strong>Phone Number:</strong> {{ employee.phoneNumber }}</p>
+      <p><strong>Matricule:</strong> {{ employee.matricule }}</p>
+      <p><strong>City:</strong> {{ employee.city }}</p>
+      <p><strong>Speciality:</strong> {{ employee.speciality }}</p>
+      <p><strong>Grade:</strong> {{ employee.grade }}</p>
+      <p><strong>Projects:</strong></p>
+      <ul>
+        <li *ngFor="let p of employee.projects">{{ p }}</li>
+      </ul>
+    </div>
+
+    <button class="cancel-btn" (click)="cancel()">Back to List</button>
+  </div>
+</div>

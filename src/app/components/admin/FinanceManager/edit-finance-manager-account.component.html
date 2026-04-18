@@ -1,0 +1,29 @@
+<div class="container">
+
+  <div class="card">
+
+    <h3>Modifier Compte Finance Manager</h3>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input [(ngModel)]="formData.username" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input [(ngModel)]="formData.email" type="email">
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input [(ngModel)]="formData.password" type="password" placeholder="Laisser vide pour ne pas changer">
+    </div>
+
+    <div class="actions">
+      <button class="btn gray" (click)="cancel()">Annuler</button>
+      <button class="btn green" (click)="submit()">Enregistrer</button>
+    </div>
+
+  </div>
+
+</div>

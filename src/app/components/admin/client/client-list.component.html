@@ -1,0 +1,74 @@
+<div class="layout">
+
+  <!-- 🔹 SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">FIN<span>LOGIK</span></h2>
+
+    <ul class="menu">
+      <li routerLink="/dashboard" routerLinkActive="active-item">Dashboard</li>
+      <li routerLink="/project-manager-list" routerLinkActive="active-item">Project Manager</li>
+      <li routerLink="/employee-list" routerLinkActive="active-item">Employee</li>
+      <li routerLink="/finance-manager-list" routerLinkActive="active-item">Finance Manager</li>
+      <li routerLink="/client-list" routerLinkActive="active-item">Client</li>
+      <li routerLink="/project-list" routerLinkActive="active-item">Projects</li>
+      <li routerLink="/admin-list" routerLinkActive="active-item">Admin Management</li>
+    </ul>
+
+    <button class="logout" (click)="logout()">Logout</button>
+  </aside>
+
+  <!-- 🔹 MAIN -->
+  <div class="main">
+
+    <!-- 🔹 TOPBAR -->
+    <div class="topbar">
+      <span>You're Logged as Administrator.</span>
+      <div class="user">
+        <div class="avatar"></div>
+        Admin
+      </div>
+    </div>
+
+    <!-- 🔹 CONTENT -->
+    <div class="content">
+
+      <div class="header">
+        <input class="search" placeholder="Search client..." />
+        <button class="add-btn" (click)="create()"> Create Client</button>
+      </div>
+
+      <!-- 🔹 TABLE -->
+      <table class="pm-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Company</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>{{ client.id }}</td>
+            <td>{{ client.fullName }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.company }}</td>
+           
+            <td>
+              <span class="view" (click)="view(client.id)">View</span> |
+              <span class="edit" (click)="edit(client.id)">Edit</span> |
+              <span class="delete" (click)="delete(client.id)">Delete</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

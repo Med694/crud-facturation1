@@ -18,7 +18,7 @@ export class EmployeeService {
     return this.http.post(`${this.apiUrl}/create-full`, data);
   }
   getProjects() {
-  return this.http.get(`${this.apiUrl}/project`);
+  return this.http.get('https://localhost:7002/api/Project');
 }
 
   // =========================
@@ -48,6 +48,8 @@ export class EmployeeService {
   update(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/edit/${id}`, data);
   }
+  
+
 
   // =========================
   // 🔹 DELETE
@@ -55,4 +57,18 @@ export class EmployeeService {
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  // ============================
+  // 🔹 Emploee Details Timesheet 
+
+  // ============================
+  getFullDetails(id: number) {
+  return this.http.get(`https://localhost:7002/api/employee/details-full/${id}`);
+}
+importExcel(formData: FormData) {
+  return this.http.post<any[]>(
+    `${this.apiUrl}/import-excel`,
+    formData
+  );
+}
+  
 }

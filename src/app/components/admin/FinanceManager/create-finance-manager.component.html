@@ -1,0 +1,29 @@
+<div class="form-container">
+
+  <h2>Créer Finance Manager - Compte</h2>
+
+  <div class="form-grid">
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>Email</label>
+      <input [(ngModel)]="formData.email" type="email">
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input [(ngModel)]="formData.password" type="password">
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label>Confirmer mot de passe</label>
+      <input [(ngModel)]="formData.confirmPassword" type="password">
+    </div>
+
+  </div>
+
+  <button class="btn-next" (click)="submit()">Créer</button>
+
+</div>

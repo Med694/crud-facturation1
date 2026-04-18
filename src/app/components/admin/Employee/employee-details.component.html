@@ -1,0 +1,44 @@
+<div *ngIf="employee" class="container">
+
+  <!-- 👤 EMPLOYEE CARD -->
+  <div class="card">
+    <h2>{{ employee.fullName }}</h2>
+    <p><strong>Email :</strong> {{ employee.email }}</p>
+  </div>
+
+  <!-- 📁 PROJECTS -->
+  <h3 class="section-title">Projets assignés</h3>
+
+  <div class="projects">
+
+    <div *ngFor="let p of employee.projects" class="project-card">
+
+      <h4>{{ p.name }}</h4>
+
+      <p><strong>Project Manager :</strong> {{ p.projectManager }}</p>
+      <p><strong>Client :</strong> {{ p.client }}</p>
+
+      <!-- 📥 IMPORT -->
+      <input type="file" (change)="onFileSelected($event, p.id)" />
+
+   
+
+  </div>
+<div *ngFor="let r of results" class="result-box">
+
+  <p><strong>Coût horaire :</strong> {{ r.hourlyRate }}</p>
+  <p><strong>Total heures :</strong> {{ r.totalHours }}</p>
+  <p><strong>Heures prévues :</strong> {{ r.plannedHours }}</p>
+  
+
+
+  <p><strong>Détails :</strong></p>
+
+  <ul>
+    <li *ngFor="let d of r.details">
+      {{ d.date }} → {{ d.hours }} h
+    </li>
+  </ul>
+
+</div>
+</div>

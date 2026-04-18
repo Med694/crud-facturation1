@@ -29,6 +29,35 @@ import { ProjectResolver } from './app/components/admin/Project/project-resolver
 import{ViewProjectComponent} from './app/components/admin/Project/view-project.component';
 import { ProjectViewResolver } from './app/components/admin/Project/project-view-resolver';
 import{EditProjectComponent} from './app/components/admin/Project/edit-project.component'
+import { CreateEmployeeDetailsComponent } from './app/components/admin/Employee/create-employee-details.component';
+import { EmployeeListComponent } from './app/components/admin/Employee/employee-list.component';
+import { EmployeeResolver } from './app/components/admin/Employee/employee.resolver';
+import { EditEmployeeComponent } from './app/components/admin/Employee/edit-employee.component';
+import { ViewEmployeeComponent } from './app/components/admin/Employee/view-employee.component';
+import { ViewEmployeeResolver } from './app/components/admin/Employee/view-employee.resolver';
+import { EmployeeDetailsComponent } from './app/components/admin/Employee/employee-details.component';
+import { EmployeeDetailsResolver } from './app/components/admin/Employee/employee-details.resolver';
+import { CreateClientComponent } from './app/components/admin/client/create-client.component';
+import { ClientListComponent } from './app/components/admin/client/client-list.component';
+import { ClientResolver } from './app/components/admin/client/client.resolver';
+import { ViewClientComponent } from './app/components/admin/client/view-client.component';
+import { ViewClientResolver } from './app/components/admin/client/view-client.reslover';
+import { EditClientComponent } from './app/components/admin/client/edit-client.component';
+import { CreateFinanceManagerDetailsComponent } from './app/components/admin/FinanceManager/create-finance-manager-details.component';
+import { CreateFinanceManagerComponent } from './app/components/admin/FinanceManager/create-finance-manager.component';
+import { FinanceManagerListComponent } from './app/components/admin/FinanceManager/finance-manager-list.component';
+import { FinanceManagerResolver } from './app/components/admin/FinanceManager/finance-manager.resolver';
+import {ViewFinanceManagerComponent} from './app/components/admin/FinanceManager/view-finance-manager.component';
+import { FinanceManagerViewResolver } from './app/components/admin/FinanceManager/view-finance-manager.resolver';
+import { EditFinanceManagerComponent } from './app/components/admin/FinanceManager/edit-finance-manager.componet';
+import { EditFinanceManagerAccountComponent } from './app/components/admin/FinanceManager/edit-finance-manager-account.component';
+import { ProjectManagerDashboardComponent } from './app/components/ProjectManager/project-manager-dashboard.component';
+import { ProjectManagerDashboardResolver } from './app/components/ProjectManager/project-manager-dashboard.reslover';
+import { FinanceManagerDashboardComponent } from './app/components/FinanceManager/finance-manager-dashboard.component';
+import { FinanceDashboardResolver } from './app/components/FinanceManager/finance-manager-dashboard.resolver';
+
+
+import path from 'path';
 
 
 
@@ -81,7 +110,78 @@ bootstrapApplication(App, {
   component: EditProjectComponent,
   
 },
+{ path: 'create-employee-details', component: CreateEmployeeDetailsComponent },
+  
+  {
+  path: 'employee-list',
+  component: EmployeeListComponent,
+  resolve: {
+    employees: EmployeeResolver
+  }
+},
+{ path: 'edit-employee/:id', component: EditEmployeeComponent },
+{ path: 'view-employee/:id', component: ViewEmployeeComponent ,
+  resolve: {
+    employee: ViewEmployeeResolver
+  }
+ },
+ {path:  'employee-details/:id', component: EmployeeDetailsComponent ,
+  resolve: {
+    details: EmployeeDetailsResolver
+  }
+},
+ {path: 'create-client', component: CreateClientComponent },
+ {path: 'client-list', component: ClientListComponent,
+  resolve: {
+    clients: ClientResolver 
+  },
+},
+{
+  path: 'view-client/:id',
+  component: ViewClientComponent,
+  resolve: {
+    client: ViewClientResolver
+  }
+},
+{path: 'edit-client/:id', component: EditClientComponent },
+{path: 'create-finance-manager-details', component: CreateFinanceManagerDetailsComponent },
+{path: 'create-finance-manager', component: CreateFinanceManagerComponent },
+{
+  path: 'finance-manager-list',
+  component: FinanceManagerListComponent,
+  resolve: {
+    data: FinanceManagerResolver
+  }
+},
+{path: 'view-finance-manager/:id', component: ViewFinanceManagerComponent ,
+  resolve: {
+    fm: FinanceManagerViewResolver
+  }
+},
+{path: 'edit-finance-manager/:id', component: EditFinanceManagerComponent },
+{path: 'edit-finance-manager-account/:id', component: EditFinanceManagerAccountComponent },
+ {
+    path: 'project-manager-dashboard/:id',
+    component: ProjectManagerDashboardComponent,
+    resolve: {
+        pmData: ProjectManagerDashboardResolver
+    }
+  },
+  {
+  path: 'finance-manager-dashboard',
+  component: FinanceManagerDashboardComponent,
+  resolve: {
+    worklogs: FinanceDashboardResolver
+  }
+},
+
+
+
+
+
   { path: '**', redirectTo: 'login' },
+
+  
 
  
     ], withHashLocation()),

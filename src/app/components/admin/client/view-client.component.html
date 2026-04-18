@@ -1,0 +1,26 @@
+ <!-- MAIN -->
+  <div class="main">
+
+    
+
+    <div class="content" *ngIf="client">
+
+      <h2>{{ client.fullName }}</h2>
+
+      <p><strong>Email:</strong> {{ client.email }}</p>
+      <p><strong>Téléphone:</strong> {{ client.phone }}</p>
+      <p><strong>Adresse:</strong> {{ client.address }}</p>
+      <p><strong>Entreprise:</strong> {{ client.company }}</p>
+
+      <h3>Projets</h3>
+      <ul>
+        <li *ngFor="let p of client.projects">
+          {{ p }}
+        </li>
+      </ul>
+
+      <button class="add-btn" (click)="back()">Retour</button>
+
+    </div>
+
+  </div>

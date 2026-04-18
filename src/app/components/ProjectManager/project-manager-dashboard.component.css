@@ -1,0 +1,74 @@
+.container {
+  padding: 30px;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+}
+
+/* 🔹 TITRE PROJET */
+h2 {
+  margin: 10px 0;
+  color: #1f2937;
+}
+
+/* 🔹 CLIENT */
+p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* 🔹 EMPLOYEE CARD */
+h4 {
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffffff;
+  border-left: 4px solid #7ac943;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  color: #222;
+}
+
+/* 🔹 WORKLOG BOX */
+div[ng-reflect-ng-for-of] > div {
+  margin-left: 15px;
+}
+
+/* 🔹 WORK LOG CARD */
+pre {
+  background: #eef2ff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+/* 🔹 HOURS INFO */
+.work-info {
+  background: #ffffff;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* 🔹 SEPARATE PROJECT */
+hr {
+  margin: 25px 0;
+  border: none;
+  border-top: 2px solid #ddd;
+}
+button {
+  margin-right: 8px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:first-child {
+  background: #28a745;
+  color: white;
+}
+
+button:last-child {
+  background: #888;
+  color: white;
+}

@@ -1,0 +1,98 @@
+<!-- finance-manager-list.component.html -->
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">FIN<span>LOGIK</span></h2>
+
+    <ul class="menu">
+      <li routerLink="/dashboard" routerLinkActive="active-item">
+  Dashboard
+</li>
+      <li routerLink="/project-manager-list" routerLinkActive="active-item">Project Manager</li>
+      <li routerLink="/employee-list" routerLinkActive="active-item">Employee</li>
+      <li class="active-item">Finance Manager</li>
+      <li routerLink="/client-list" routerLinkActive="active-item">Client</li>
+      <li routerLink="/project-list" routerLinkActive="active-item">
+  Projects
+</li>
+      <li>Admin Management</li>
+    </ul>
+
+    <button class="logout" (click)="logout()">
+  Logout
+</button>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <span>you're logged in as Admin</span>
+
+      <div class="user">
+        <div class="avatar"></div>
+        Admin
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <div class="header">
+        
+
+        <div>
+            
+          <input class="search" placeholder="Search...">
+          <button class="add-btn" routerLink="/create-finance-manager-details">
+            Add Finance Manager
+          </button>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <table class="pm-table">
+
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Matricule</th>
+             <th>Téléphone</th>
+            <th>Ville</th>
+            <th>Service</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let fm of data">
+
+            <td>{{ fm.fullName }}</td>
+            <td>{{ fm.email }}</td>
+            <td>{{ fm.matricule }}</td>
+            <td>{{ fm.telephone }}</td>
+            <td>{{ fm.ville }}</td>
+            <td>{{ fm.service }}</td>
+
+            <td>
+              <a class="view" [routerLink]="['/view-finance-manager', fm.id]">View</a>
+              |
+              <a class="edit" [routerLink]="['/edit-finance-manager', fm.id]">Edit</a>
+              |
+              <a class="delete" (click)="delete(fm.id)">Delete</a>
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+</div>
