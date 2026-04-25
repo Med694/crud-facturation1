@@ -14,13 +14,12 @@
     <div class="form-group">
       <label>Project Manager</label>
 
-      <select [(ngModel)]="formData.projectManagerId">
-        <option [ngValue]="null">-- Sélectionner --</option>
-
-        <option *ngFor="let pm of projectManagers" [ngValue]="pm.id">
-          {{ pm.fullName }}
-        </option>
-      </select>
+      <select [(ngModel)]="formData.projectManagerId" name="pm">
+  <option [ngValue]="null">-- Aucun --</option>
+  <option *ngFor="let pm of projectManagers" [ngValue]="pm.id">
+    {{ pm.fullName }}
+  </option>
+</select>
     </div>
 
     <!-- Actions -->

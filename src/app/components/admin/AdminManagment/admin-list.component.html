@@ -1,8 +1,5 @@
-<!-- finance-manager-list.component.html -->
-
 <div class="layout">
 
-  <!-- SIDEBAR -->
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <h2 class="logo">FIN<span>LOGIK</span></h2>
@@ -26,16 +23,16 @@
 </button>
   </aside>
 
-  <!-- MAIN -->
+  <!-- 🔹 MAIN -->
   <div class="main">
 
     <!-- TOPBAR -->
     <div class="topbar">
-      <span>you're logged in as Admin</span>
+      <span>You're Logged as Administrator</span>
 
       <div class="user">
         <div class="avatar"></div>
-        Admin
+        <span>Admin</span>
       </div>
     </div>
 
@@ -43,18 +40,12 @@
     <div class="content">
 
       <div class="header">
-        
-
-        <div>
-            
-          <input class="search" placeholder="Search...">
-          <button class="add-btn" routerLink="/create-finance-manager-details">
-            Add Finance Manager
-          </button>
-        </div>
+        <h2>Liste des Admins</h2>
+        <button class="add-btn" routerLink="/create-admin-details">
+     Create Admin
+  </button>
       </div>
 
-      <!-- TABLE -->
       <table class="pm-table">
 
         <thead>
@@ -62,37 +53,32 @@
             <th>Nom</th>
             <th>Email</th>
             <th>Matricule</th>
-             <th>Téléphone</th>
+            <th>Téléphone</th>
             <th>Ville</th>
-            <th>Service</th>
+            <th>Date création</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let fm of data">
-
-            <td>{{ fm.fullName }}</td>
-            <td>{{ fm.email }}</td>
-            <td>{{ fm.matricule }}</td>
-            <td>{{ fm.telephone }}</td>
-            <td>{{ fm.ville }}</td>
-            <td>{{ fm.service }}</td>
+          <tr *ngFor="let a of data">
+            <td>{{ a.fullName }}</td>
+            <td>{{ a.email }}</td>
+            <td>{{ a.matricule }}</td>
+            <td>{{ a.phone }}</td>
+            <td>{{ a.city }}</td>
+            <td>{{ a.dateCreation | date:'dd/M/y' }}</td>
 
             <td>
-              <a class="view" [routerLink]="['/view-finance-manager', fm.id]">View</a>
-              |
-              <a class="edit" [routerLink]="['/edit-finance-manager', fm.id]">Edit</a>
-              |
-              <a class="delete" (click)="delete(fm.id)">Delete</a>
+                <a (click)="view(a.id)" class="view">View</a> /
+              <a (click)="edit(a.id)" class="edit">Edit</a> /
+              <a (click)="delete(a.id)" class="delete">Delete</a>
             </td>
-
           </tr>
         </tbody>
 
       </table>
 
     </div>
-
   </div>
 </div>

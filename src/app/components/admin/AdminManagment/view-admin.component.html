@@ -1,0 +1,16 @@
+<div class="container" *ngIf="admin">
+
+  <div class="card">
+    <h2>Détails Admin</h2>
+
+    <p><strong>Nom :</strong> {{ admin.fullName }}</p>
+    <p><strong>Email :</strong> {{ admin.email }}</p>
+    <p><strong>Ville :</strong> {{ admin.city }}</p>
+    <p><strong>Téléphone :</strong> {{ admin.phone }}</p>
+    <p><strong>Matricule :</strong> {{ admin.matricule }}</p>
+    <p><strong>Date création :</strong> {{ admin.dateCreation | date:'dd/MM/yyyy' }}</p>
+
+    <button (click)="cancel()">Retour</button>
+  </div>
+
+</div>

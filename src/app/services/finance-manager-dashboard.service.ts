@@ -14,10 +14,10 @@ export class FinanceManagerDashboardService {
   getApprovedWorklogs(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-  getInvoicePdf(projectId: number) {
-  return this.http.get(
-    `https://localhost:7002/api/finance/invoice/${projectId}/pdf`,
-    { responseType: 'blob' }
-  );
+  getInvoicePdf(clientId: number): Observable<Blob> {
+  return this.http.get(`https://localhost:7002/api/finance/invoice/client/${clientId}/pdf`, {
+    responseType: 'blob'
+  });
 }
+
 }

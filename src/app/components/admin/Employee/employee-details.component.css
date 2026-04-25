@@ -1,69 +1,113 @@
-/* 🔹 CONTAINER */
+/* CONTAINER */
 .container {
-  padding: 30px;
-  background: #f5f7fb;
+  padding: 25px;
 }
 
-/* 🔹 EMPLOYEE INFO */
-.card {
+/* EMPLOYEE CARD */
+.employee-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   margin-bottom: 20px;
 }
 
-.card h2 {
-  margin-bottom: 5px;
-  color: #222;
-}
-
-.card p {
-  margin: 0;
-  color: #555;
-}
-
-/* 🔹 TITRE */
+/* SECTION TITLE */
 .section-title {
-  margin: 20px 0;
+  margin: 20px 0 10px;
   color: #333;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 5px;
 }
 
-/* 🔹 LISTE PROJETS */
+/* PROJECTS GRID */
 .projects {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 15px;
 }
 
-/* 🔹 CHAQUE PROJET */
+/* PROJECT CARD */
 .project-card {
-  background: #fff;
+  background: white;
   padding: 15px;
-  border-left: 4px solid #7ac943;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: 0.3s;
 }
 
-/* 🔹 TITRE PROJET */
-.project-card h4 {
-  margin-bottom: 8px;
-  color: #222;
+.project-card:hover {
+  transform: translateY(-3px);
 }
 
-/* 🔹 TEXT */
-.project-card p {
-  margin: 3px 0;
-  font-size: 14px;
-  color: #444;
+/* PROJECT HEADER */
+.project-header {
+  margin-bottom: 10px;
 }
 
-/* 🔹 INPUT FILE */
-input[type="file"] {
-  margin-top: 8px;
-  font-size: 13px;
-}
-.result-box {
+/* FILE INPUT */
+.upload-box input {
   margin-top: 10px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* RESULT CARD */
+.result-card {
+  background: white;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 5px solid #7ac142;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* RESULT GRID */
+.result-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* DETAILS */
+.details-box {
+  background: #f9fafb;
   padding: 10px;
-  background: #eef;
-  border-left: 4px solid #007bff;
+  border-radius: 8px;
+}
+
+.details-box ul {
+  margin: 0;
+  padding-left: 15px;
+}
+
+.details-box li {
+  font-size: 13px;
+  color: #555;
+}
+/* CUSTOM BUTTON */
+.upload-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #4cafef, #2f80ed);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+  text-align: center;
+  width: 100%;
+}
+
+/* HOVER EFFECT */
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(47, 128, 237, 0.3);
+}
+
+/* HIDE DEFAULT INPUT */
+.upload-btn input[type="file"] {
+  display: none;
 }

@@ -1,28 +1,51 @@
-<div *ngFor="let p of data">
-  <h2>{{ p.project }}</h2>
-  <p>Client: {{ p.client }}</p>
+<div class="container">
 
-  <div *ngFor="let e of p.employees">
-    <h4>{{ e.fullName }} ({{ e.email }} )</h4>
-
-    <div *ngFor="let w of e.workLogs">
-      <p>Hourly Rate: {{ w.hourlyRate }}</p>
-      <p>Total Hours: {{ w.totalHours }}</p>
-    <p>Planned Hours: {{ w.plannedHours }}</p>
-      
-      <p><strong>Détails :</strong></p>
-
-<ul>
-  <li *ngFor="let d of parseDetails(w.detailsJson)">
-    {{ d.date }} → {{ d.hours }} h
-  </li>
-</ul>
-<button (click)="refuseWorklog(p, e, w)">
-  Rejected
-</button>
-<button (click)="approveWorklog(w)"> Approved</button>
+  <div *ngFor="let p of data" class="project-card">
+    
+    <!-- HEADER PROJET -->
+    <div class="project-header">
+      <h2>{{ p.project }}</h2>
+      <p><strong>Client:</strong> {{ p.client }}</p>
     </div>
+
+    <!-- EMPLOYEES -->
+    <div *ngFor="let e of p.employees" class="employee-card">
+      
+      <h4>{{ e.fullName }} ({{ e.email }})</h4>
+
+      <!-- WORKLOGS -->
+      <div *ngFor="let w of e.workLogs" class="result-card">
+
+        <div class="result-grid">
+          <p><strong>Hourly Rate:</strong> {{ w.hourlyRate }}</p>
+          <p><strong>Total Hours:</strong> {{ w.totalHours }}</p>
+          <p><strong>Planned Hours:</strong> {{ w.plannedHours }}</p>
+        </div>
+
+        <!-- DETAILS -->
+        <div class="details-box">
+          <p><strong>Détails :</strong></p>
+          <ul>
+            <li *ngFor="let d of parseDetails(w.detailsJson)">
+              {{ d.date }} → {{ d.hours }} h
+            </li>
+          </ul>
+        </div>
+
+        <!-- ACTIONS -->
+        <div style="margin-top: 10px;">
+          <button (click)="openRejectDialog(p, e, w)">
+   Rejected
+</button>
+          <button (click)="approveWorklog(w)">
+             Approved
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <hr>
 </div>

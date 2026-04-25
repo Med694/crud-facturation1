@@ -70,5 +70,10 @@ importExcel(formData: FormData) {
     formData
   );
 }
+getWorkLogs(employeeId: number, projectId: number) {
+  return this.http.get(
+    `https://localhost:7002/api/Employee/worklogs/${employeeId}/${projectId}`
+  );
+}
   
 }

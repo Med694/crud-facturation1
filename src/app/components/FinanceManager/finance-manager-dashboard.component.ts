@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './finance-manager-dashboard.component.html',
+  styleUrls: ['./finance-manager-dashboard.component.css']
   
 })
 export class FinanceManagerDashboardComponent implements OnInit {
@@ -34,8 +35,8 @@ export class FinanceManagerDashboardComponent implements OnInit {
     return [];
   }
 }
-openInvoice(projectId: number) {
-  this.service.getInvoicePdf(projectId).subscribe(blob => {
+openInvoice(clientId: number) {
+  this.service.getInvoicePdf(clientId).subscribe(blob => {
     const url = window.URL.createObjectURL(blob);
     window.open(url);
   });

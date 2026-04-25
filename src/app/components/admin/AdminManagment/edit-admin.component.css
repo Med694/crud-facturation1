@@ -1,0 +1,106 @@
+/* 🔹 GLOBAL */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f5f7fb;
+}
+
+/* 🔹 CONTAINER (centrage total) */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 🔹 CARD */
+.card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* 🔹 TITLE */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* 🔹 FORM GROUP */
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 LABEL */
+label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 500;
+}
+
+/* 🔹 INPUT */
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* 🔹 PLACEHOLDER */
+input::placeholder {
+  color: #aaa;
+  font-size: 13px;
+}
+
+/* 🔹 FOCUS EFFECT */
+input:focus {
+  border-color: #7ac943;
+  box-shadow: 0 0 0 2px rgba(122, 201, 67, 0.2);
+}
+
+/* 🔹 BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #7ac943;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+/* 🔹 BUTTON HOVER */
+button:hover {
+  background: #689f38;
+  transform: translateY(-2px);
+}
+
+/* 🔹 BUTTON ACTIVE */
+button:active {
+  transform: translateY(0);
+}
+
+/* 🔹 ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -22,4 +22,8 @@ export class ProjectManagerDashboardService {
 approveWorklog(id: number) {
   return this.http.put(`https://localhost:7002/api/worklog/${id}/approve`, {});
 }
+rejectWorklog(id: number, comment: string) {
+  return this.http.put(`${this.baseUrl}/worklog/${id}/reject`, { comment });
+}
+
 }

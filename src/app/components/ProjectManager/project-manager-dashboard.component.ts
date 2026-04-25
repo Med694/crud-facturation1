@@ -31,18 +31,23 @@ export class ProjectManagerDashboardComponent implements OnInit {
     return [];
   }
 }
-refuseWorklog(project: any, employee: any, worklog: any) {
+openRejectDialog(project: any, employee: any, worklog: any) {
 
   if (!worklog?.id) {
     alert("ID worklog manquant !");
     return;
   }
 
-  if (!confirm('❌ Refuser ce worklog ?')) return;
+  const comment = prompt("Pourquoi ce worklog est rejeté ?");
 
-  this.service.deleteWorklog(worklog.id).subscribe(() => {
+  if (!comment || comment.trim() === "") {
+    alert("Le commentaire est obligatoire !");
+    return;
+  }
 
-    // ✅ rebuild propre du state Angular
+  this.service.rejectWorklog(worklog.id, comment).subscribe(() => {
+
+    // ✅ mettre à jour le state (sans supprimer)
     this.data = this.data.map((p: any) => {
       if (p !== project) return p;
 
@@ -53,15 +58,21 @@ refuseWorklog(project: any, employee: any, worklog: any) {
 
           return {
             ...e,
-            workLogs: e.workLogs.filter(
-              (w: any) => w.id !== worklog.id
-            )
+            workLogs: e.workLogs.map((w: any) => {
+              if (w.id !== worklog.id) return w;
+
+              return {
+                ...w,
+                status: 'Rejected',
+                rejectionComment: comment
+              };
+            })
           };
         })
       };
     });
 
-    alert('❌ Worklog supprimé');
+    alert('❌ Worklog rejeté');
   });
 }
 approveWorklog(worklog: any) {

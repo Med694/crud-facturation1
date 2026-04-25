@@ -1,0 +1,61 @@
+<div class="container">
+
+  <h2>Créer Admin - Compte</h2>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+
+    <!-- 🔹 Username (affiché depuis fullName) -->
+    <div class="form-group">
+      <label>Username</label>
+      <input 
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        disabled
+        class="form-control">
+    </div>
+
+    <!-- 🔹 Email -->
+    <div class="form-group">
+      <label>Email</label>
+      <input 
+        type="email"
+        name="email"
+        [(ngModel)]="formData.email"
+        required
+        class="form-control"
+        placeholder="admin@gmail.com">
+    </div>
+
+    <!-- 🔹 Password -->
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input 
+        type="password"
+        name="password"
+        [(ngModel)]="formData.password"
+        required
+        class="form-control"
+        placeholder="••••••••">
+    </div>
+
+    <!-- 🔹 Confirm Password -->
+    <div class="form-group">
+      <label>Confirmer mot de passe</label>
+      <input 
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="formData.confirmPassword"
+        required
+        class="form-control"
+        placeholder="••••••••">
+    </div>
+
+    <!-- 🔹 Button -->
+    <button type="submit" class="btn-submit">
+      Créer Admin
+    </button>
+
+  </form>
+
+</div>

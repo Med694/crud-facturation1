@@ -16,18 +16,22 @@ export class EmployeeDetailsComponent implements OnInit {
   employee: any;
   results: any[] = [];
 
+
   constructor(
     private service: EmployeeService,
     private route: ActivatedRoute
+    
   ) {}
 
   ngOnInit(): void {
   this.route.data.subscribe((data) => {
     this.employee = data['details'];
+    
   });
 }
 
   onFileSelected(event: any, projectId: number) {
+    
   const file = event.target.files[0];
   if (!file) return;
 
@@ -40,10 +44,16 @@ export class EmployeeDetailsComponent implements OnInit {
 
   this.service.importExcel(formData).subscribe({
     next: (res: any) => {
-      this.results = res;
-      console.log(res);
-
-      // ✅ ALERTE SUCCESS
+      const employeeId = this.employee?.id || this.employee?.Id;
+  // 🔥 charger uniquement ce projet
+  this.service.getWorkLogs(employeeId, projectId)
+    .subscribe((data: any) => {
+      const project = this.employee.projects.find((p: any) => p.id === projectId);
+      if (project) {
+        project.worklogs = data;
+      }
+    });
+    // ✅ ALERTE SUCCESS
       alert('✅ Import réussi ! ' + res.length + ' ligne(s) ajoutée(s)');
     },
     error: (err) => {

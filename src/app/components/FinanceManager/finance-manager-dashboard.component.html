@@ -1,30 +1,45 @@
-<h2>💰 Finance Manager Dashboard</h2>
+<h2> Finance Manager Dashboard</h2>
 
-<div *ngFor="let w of worklogs" class="card">
+<div class="container">
 
-  <h3>👤 {{ w.employee }}</h3>
-  <p><strong>Email:</strong> {{ w.email }}</p>
+  <div *ngFor="let w of worklogs" class="project-card">
 
-  <p><strong>📁 Project:</strong> {{ w.project }}</p>
-  <p><strong>🏢 Client:</strong> {{ w.client }}</p>
-  <p><strong>🧑‍💼 Project Manager:</strong> {{ w.projectManager }}</p>
+    <div class="employee-card">
+      <h4> {{ w.employee }}</h4>
 
-  <p><strong>💵 Hourly Rate:</strong> {{ w.hourlyRate }}</p>
-  <p><strong>⏱ Total Hours:</strong> {{ w.totalHours }}</p>
-  <p><strong>📊 Planned Hours:</strong> {{ w.plannedHours }}</p>
-  <p><strong>Total Cost:</strong> {{ w.totalCost }} </p>
+      <p><strong>Email:</strong> {{ w.email }}</p>
+      <p><strong>Project:</strong> {{ w.project }}</p>
+      <p><strong>Client:</strong> {{ w.client }}</p>
+      <p><strong>Project Manager:</strong> {{ w.projectManager }}</p>
+    </div>
 
-  <div>
-  <strong>📄 Details:</strong>
-  <ul>
-    <li *ngFor="let d of parseDetails(w.detailsJson)">
-       {{ d.date }} — {{ d.hours }}h
-    </li>
-  </ul>
-  <button (click)="openInvoice(w.projectId)">
-  🧾 Open Invoice
-</button>
-</div>
+    <div class="result-card">
 
-  <hr>
+      <div class="result-grid">
+        <p><strong> Hourly Rate:</strong> {{ w.hourlyRate }}</p>
+        <p><strong> Total Hours:</strong> {{ w.totalHours }}</p>
+        <p><strong> Planned Hours:</strong> {{ w.plannedHours }}</p>
+        <p><strong>Total Cost:</strong> {{ w.totalCost }}</p>
+      </div>
+
+      <div class="details-box">
+        <p><strong> Details:</strong></p>
+
+        <ul>
+          <li *ngFor="let d of parseDetails(w.detailsJson)">
+            {{ d.date }} — {{ d.hours }}h
+          </li>
+        </ul>
+      </div>
+
+      <button (click)="openInvoice(w.clientId)">
+  Open Invoice
+</button> 
+
+    </div>
+
+    <hr>
+
+  </div>
+
 </div>

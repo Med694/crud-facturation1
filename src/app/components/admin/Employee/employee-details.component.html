@@ -1,7 +1,7 @@
 <div *ngIf="employee" class="container">
 
-  <!-- 👤 EMPLOYEE CARD -->
-  <div class="card">
+  <!-- 👤 EMPLOYEE -->
+  <div class="card employee-card">
     <h2>{{ employee.fullName }}</h2>
     <p><strong>Email :</strong> {{ employee.email }}</p>
   </div>
@@ -13,32 +13,58 @@
 
     <div *ngFor="let p of employee.projects" class="project-card">
 
-      <h4>{{ p.name }}</h4>
+      <div class="project-header">
+        <h4>{{ p.name }}</h4>
+      </div>
 
       <p><strong>Project Manager :</strong> {{ p.projectManager }}</p>
       <p><strong>Client :</strong> {{ p.client }}</p>
 
       <!-- 📥 IMPORT -->
-      <input type="file" (change)="onFileSelected($event, p.id)" />
+      <div class="upload-box">
 
-   
-
-  </div>
-<div *ngFor="let r of results" class="result-box">
-
-  <p><strong>Coût horaire :</strong> {{ r.hourlyRate }}</p>
-  <p><strong>Total heures :</strong> {{ r.totalHours }}</p>
-  <p><strong>Heures prévues :</strong> {{ r.plannedHours }}</p>
-  
-
-
-  <p><strong>Détails :</strong></p>
-
-  <ul>
-    <li *ngFor="let d of r.details">
-      {{ d.date }} → {{ d.hours }} h
-    </li>
-  </ul>
+  <label class="upload-btn">
+    Import Worklog
+    <input type="file" (change)="onFileSelected($event, p.id)" />
+  </label>
 
 </div>
+
+      <!-- ✅ WORKLOGS -->
+      <div *ngIf="p.worklogs?.length > 0">
+        <h5>Worklogs enregistrés</h5>
+
+        <div *ngFor="let w of p.worklogs" class="result-card">
+
+          <div class="result-grid">
+            <div><strong>Coût horaire :</strong> {{ w.hourlyRate }}</div>
+            <div><strong>Total heures :</strong> {{ w.totalHours }}</div>
+            <div><strong>Heures prévues :</strong> {{ w.plannedHours }}</div>
+          </div>
+
+          <div class="details-box">
+            <ul>
+              <li *ngFor="let d of w.details">
+                {{ d.date }} → {{ d.hours }} h
+              </li>
+            </ul>
+          </div>
+
+          <!-- ✅ FIX IMPORTANT : ici w existe -->
+          <p><strong>Status:</strong> {{ w.status }}</p>
+
+          <p *ngIf="w.status === 'Rejected'">
+            ❌ Reason: {{ w.rejectionComment }}
+          </p>
+
+          <p *ngIf="w.status === 'Approved'">
+            ✅ Approved
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>

@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="card">
+    <h2>Modifier Admin - Informations</h2>
+
+    <form (ngSubmit)="submit()">
+
+      <!-- 🔹 Full Name -->
+      <div class="form-group">
+        <label>Nom complet</label>
+        <input 
+          type="text"
+          [(ngModel)]="formData.fullName"
+          name="fullName"
+          placeholder="Ex: Mohamed Kallel"
+          required>
+      </div>
+
+      <!-- 🔹 City -->
+      <div class="form-group">
+        <label>Ville</label>
+        <input 
+          type="text"
+          [(ngModel)]="formData.city"
+          name="city"
+          placeholder="Ex: Tunis"
+          required>
+      </div>
+
+      <!-- 🔹 Phone -->
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input 
+          type="text"
+          [(ngModel)]="formData.phone"
+          name="phone"
+          placeholder="8 chiffres"
+          required>
+      </div>
+
+      <!-- 🔹 Matricule -->
+      <div class="form-group">
+        <label>Matricule</label>
+        <input 
+          type="text"
+          [(ngModel)]="formData.matricule"
+          name="matricule"
+          placeholder="FL1234"
+          required>
+      </div>
+
+      <!-- 🔹 Button -->
+      <button type="submit">
+        Suivant →
+      </button>
+
+    </form>
+  </div>
+
+</div>

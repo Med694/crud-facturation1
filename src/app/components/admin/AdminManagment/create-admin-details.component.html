@@ -1,0 +1,66 @@
+<div class="container">
+
+  <h2>Créer Admin - Informations</h2>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+
+    <!-- 🔹 Full Name -->
+    <div class="form-group">
+      <label>Nom complet</label>
+      <input 
+        type="text"
+        name="fullName"
+        [(ngModel)]="formData.fullName"
+        required
+        class="form-control"
+        placeholder="Ex: Mohamed Kallel">
+    </div>
+
+    <!-- 🔹 City (SELECT MODIFIÉ) -->
+    <div class="form-group">
+      <label>Ville</label>
+      <select 
+        name="city"
+        [(ngModel)]="formData.city"
+        required
+        class="form-control">
+
+        <option value="">-- Sélectionner une ville --</option>
+        <option value="Tunis">Tunis</option>
+        <option value="Sfax">Sfax</option>
+
+      </select>
+    </div>
+
+    <!-- 🔹 Phone -->
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input 
+  type="text"
+  name="phone"
+  [(ngModel)]="formData.phone"
+  required
+  class="form-control"
+  placeholder="8 chiffres">
+    </div>
+
+    <!-- 🔹 Matricule -->
+    <div class="form-group">
+      <label>Matricule</label>
+      <input 
+        type="text"
+        name="matricule"
+        [(ngModel)]="formData.matricule"
+        required
+        class="form-control"
+        placeholder="FL1234">
+    </div>
+
+    <!-- 🔹 Button -->
+    <button type="submit" class="btn-submit">
+      Suivant →
+    </button>
+
+  </form>
+
+</div>

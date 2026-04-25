@@ -55,9 +55,19 @@ import { ProjectManagerDashboardComponent } from './app/components/ProjectManage
 import { ProjectManagerDashboardResolver } from './app/components/ProjectManager/project-manager-dashboard.reslover';
 import { FinanceManagerDashboardComponent } from './app/components/FinanceManager/finance-manager-dashboard.component';
 import { FinanceDashboardResolver } from './app/components/FinanceManager/finance-manager-dashboard.resolver';
+import { CreateAdminDetailsComponent } from './app/components/admin/AdminManagment/create-admin-details.component';
+import { CreateAdminComponent } from './app/components/admin/AdminManagment/create-admin.component';
+import{ AdminListComponent } from './app/components/admin/AdminManagment/admin-list.component';
+import {AdminResolver } from './app/components/admin/AdminManagment/admin.resolver';
+import { EditAdminComponent } from './app/components/admin/AdminManagment/edit-admin.component';
+import{ EditAdminAccountComponent } from './app/components/admin/AdminManagment/edit-admin-account.component';
+import { ViewAdminComponent } from './app/components/admin/AdminManagment/view-admin.component';
+import { ViewAdminResolver } from './app/components/admin/AdminManagment/view-admin.resolver';
+
 
 
 import path from 'path';
+
 
 
 
@@ -174,12 +184,23 @@ bootstrapApplication(App, {
     worklogs: FinanceDashboardResolver
   }
 },
-
-
-
-
-
-  { path: '**', redirectTo: 'login' },
+{path: 'create-admin-details', component: CreateAdminDetailsComponent },
+{path: 'create-admin', component: CreateAdminComponent },
+{
+  path: 'admin-list',
+  component: AdminListComponent,
+  resolve: {
+    data: AdminResolver
+  }
+},
+{ path: 'edit-admin/:id', component: EditAdminComponent },
+{ path: 'edit-admin-account/:id', component: EditAdminAccountComponent },
+{path: 'view-admin/:id', component: ViewAdminComponent ,
+  resolve: {
+    admin: ViewAdminResolver
+  }
+},
+{ path: '**', redirectTo: 'login' },
 
   
 
