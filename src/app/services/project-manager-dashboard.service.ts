@@ -19,11 +19,15 @@ export class ProjectManagerDashboardService {
   deleteWorklog(id: number) {
   return this.http.delete(`https://localhost:7002/api/worklog/${id}`)
 }
-approveWorklog(id: number) {
-  return this.http.put(`https://localhost:7002/api/worklog/${id}/approve`, {});
+approveMultiple(ids: number[]) {
+ return this.http.post('https://localhost:7002/api/approve-multiple', ids);
 }
-rejectWorklog(id: number, comment: string) {
-  return this.http.put(`${this.baseUrl}/worklog/${id}/reject`, { comment });
+
+rejectMultiple(ids: number[], comment: string) {
+  return this.http.post('https://localhost:7002/api/reject-multiple', {
+    ids,
+    comment
+  });
 }
 
 }

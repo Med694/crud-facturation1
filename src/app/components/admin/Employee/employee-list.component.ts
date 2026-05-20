@@ -61,4 +61,25 @@ export class EmployeeListComponent implements OnInit {
   logout(){
     this.router.navigate(['/login']);
   }
+  importGlobal(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  this.service.importExcelGlobal(formData).subscribe({
+    next: (res) => {
+      alert("Import global réussi");
+
+      // 🔥 refresh list
+      location.reload();
+    },
+    error: (err) => {
+      alert(err.error);
+    }
+  });
+}
+  
+  
 }

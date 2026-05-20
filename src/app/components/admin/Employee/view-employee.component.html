@@ -14,7 +14,19 @@
       <ul>
         <li *ngFor="let p of employee.projects">{{ p }}</li>
       </ul>
+         <p><strong>Tasks Assigned:</strong></p>
+
+      <ul *ngIf="employee?.tasks?.length > 0; else noTasks">
+        <li *ngFor="let task of employee.tasks">
+          {{ task.title }}
+        </li>
+      </ul>
+
+      <ng-template #noTasks>
+        <p>Aucune tâche assignée</p>
+      </ng-template>
     </div>
+    
 
     <button class="cancel-btn" (click)="cancel()">Back to List</button>
   </div>

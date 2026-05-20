@@ -28,6 +28,8 @@ export class EditEmployeeComponent implements OnInit {
 
   projects: any[] = [];
   selectedProjectIds: number[] = [];
+  tasks: any[] = [];
+selectedTaskIds: number[] = [];
 
   constructor(
     private service: EmployeeService,
@@ -41,17 +43,46 @@ export class EditEmployeeComponent implements OnInit {
     this.service.getProjects().subscribe((res: any) => {
       this.projects = res;
     });
+    
 
     this.service.getForEdit(this.id).subscribe((res: any) => {
       this.formData = res;
       this.selectedProjectIds = res.projectIds;
+      this.selectedTaskIds = res.taskIds; // 🔥 IMPORTANT
     });
   }
+  onProjectsChange() {
+  this.tasks = [];
+
+  if (!this.selectedProjectIds.length) return;
+
+  this.selectedProjectIds.forEach(projectId => {
+    this.service.getTasksByProject(projectId).subscribe((res: any) => {
+
+      this.tasks = [
+        ...this.tasks,
+        ...res.filter((t: any) =>
+          !this.tasks.some(x => x.id === t.id)
+        )
+      ];
+
+    });
+  });
+}
+toggleTask(id: number) {
+  if (this.selectedTaskIds.includes(id)) {
+    this.selectedTaskIds = this.selectedTaskIds.filter(x => x !== id);
+  } else {
+    this.selectedTaskIds.push(id);
+  }
+}
+
 
   submit() {
     const payload = {
       ...this.formData,
-      projectIds: this.selectedProjectIds
+      projectIds: this.selectedProjectIds,
+      taskIds: this.selectedTaskIds   // ✅ AJOUT IMPORTANT
     };
 
     this.service.update(this.id, payload).subscribe({

@@ -28,6 +28,10 @@ export class ProjectService {
   createProject(data: any) {
     return this.http.post(this.apiUrl, data);
   }
+   getProjectForEdit(id: number) {
+  return this.http.get(`https://localhost:7002/api/project/details/${id}`);
+}
+
 
   // 🔹 UPDATE
   updateProject(id: number, data: any) {
@@ -47,11 +51,8 @@ export class ProjectService {
     );
   }
 
-  // 🔹 UNASSIGN
-  unassignProject(projectId: number) {
-    return this.http.put(
-      `${this.apiUrl}/unassign/${projectId}`,
-      {}
-    );
-  }
+  
+  getTasks() {
+  return this.http.get('https://localhost:7002/api/Task');
+}
 }

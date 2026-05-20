@@ -58,18 +58,31 @@
 </div>
 
   <!-- 🔥 Projects (Many-to-Many) -->
-   <label>Assign Projects</label>
    <div class="form-group">
-  <select multiple 
-          [(ngModel)]="selectedProjectIds" 
-          name="projects"
-          class="form-control">
+   <select multiple
+        [(ngModel)]="selectedProjectIds"
+        (change)="onProjectsChange()"
+        name="projects"
+        class="form-control">
 
-    <option *ngFor="let p of projects" [ngValue]="p.id">
-      {{ p.name }}
-    </option>
+  <option *ngFor="let p of projects" [ngValue]="p.id">
+    {{ p.name }}
+  </option>
 
-  </select>
+</select>
+   </div>
+
+<!-- 🔥 Tasks (One-to-Many) -->
+<label>Assign Tasks</label>
+
+<div *ngFor="let task of tasks" class="form-group">
+
+  <input type="checkbox"
+         [checked]="selectedTaskIds.includes(task.id)"
+         (change)="toggleTask(task.id)">
+
+  {{ task.title }}
+
 </div>
 
   <!-- 🔹 Button -->

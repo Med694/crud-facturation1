@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 export class EditProjectComponent implements OnInit {
 
   project: any = {};
+  tasks: any[] = [];
+selectedTasks: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,12 +37,24 @@ ngOnInit() {
         name: data.name,
         projectManagerId: data.projectManager?.id || null
       };
+
+      // 🔥 charger tasks après projet
+      this.loadTasks();
     }
   });
 
-  // 🔹 Charger liste PM
+  // 🔹 Charger PM
   this.service.getProjectManagers().subscribe((res: any) => {
     this.projectManagers = res;
+  });
+}
+loadTasks() {
+  this.service.getTasks().subscribe((res: any) => {
+    this.tasks = res;
+
+    this.selectedTasks = this.tasks
+      .filter(t => t.projectId === this.project.id)
+      .map(t => t.id);
   });
 }
 
@@ -51,21 +65,19 @@ ngOnInit() {
     return;
   }
 
-  this.service.updateProject(this.project.id, this.project)
+  const payload = {
+    ...this.project,
+    taskIds: this.selectedTasks
+  };
+
+  this.service.updateProject(this.project.id, payload)
     .subscribe({
       next: () => {
         alert("Projet modifié avec succès");
         this.router.navigate(['/project-list']);
       },
       error: (err) => {
-        console.error(err);
-
-        // 🔥 récupérer message backend
-        if (err.error) {
-          alert("❌ " + err.error);
-        } else {
-          alert("Erreur lors de la modification");
-        }
+        alert(err.error);
       }
     });
 }

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Rejeter Worklog</h2>
+
+
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="fill" style="width:100%">
+    <mat-label>Commentaire* </mat-label>
+    <textarea matInput [(ngModel)]="comment"></textarea>
+  </mat-form-field>
+
+  <!-- 🔴 message erreur -->
+  <p *ngIf="showError" style="color:red; font-size: 12px;">
+    Le commentaire est obligatoire
+  </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Annuler</button>
+  <button mat-raised-button color="warn" (click)="submit()">
+    Rejeter
+  </button>
+</mat-dialog-actions>

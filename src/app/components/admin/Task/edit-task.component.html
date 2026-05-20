@@ -1,0 +1,57 @@
+<div class="container">
+
+  <div class="card">
+
+    <h2>Modifier Tâche</h2>
+
+    <!-- 🔹 TITLE -->
+    <div class="form-group">
+
+      <label>Titre de la tâche</label>
+
+      <input
+        type="text"
+        [(ngModel)]="task.title"
+        placeholder="Entrer le titre"
+      />
+
+    </div>
+
+    <!-- 🔹 PROJECT -->
+    <div class="form-group">
+
+      <label>Projet associé</label>
+
+      <select [(ngModel)]="task.projectId">
+
+        <option [ngValue]="null">
+          -- Non assigné --
+        </option>
+
+        <option
+          *ngFor="let p of projects"
+          [ngValue]="p.id"
+        >
+          {{ p.name }}
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- 🔹 ACTIONS -->
+    <div class="actions">
+
+      <button class="btn green" (click)="save()">
+         Modifier
+      </button>
+
+      <button class="btn gray" (click)="cancel()">
+        Annuler
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

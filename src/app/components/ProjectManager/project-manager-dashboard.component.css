@@ -5,11 +5,85 @@ body {
   background-color: #f5f7fb;
 }
 
-/* ===== CONTAINER ===== */
-.container {
+/* ===== LAYOUT ===== */
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 230px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+ box-sizing: border-box;
+}
+
+/* LOGO */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #7ac142;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: #222;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color: #555;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu li:hover {
+  background: #f1f1f1;
+}
+
+.active-item {
+  background: #7ac142;
+  color: white !important;
+  font-weight: 500;
+}
+
+/* LOGOUT */
+.logout {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #ddd;
+}
+
+/* ===== MAIN ===== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CONTENT */
+.content {
   padding: 25px;
-  max-width: 1200px;
-  margin: auto;
+  overflow-y: auto;
 }
 
 /* ===== PROJECT CARD ===== */
@@ -26,7 +100,7 @@ body {
   transform: translateY(-4px);
 }
 
-/* ===== PROJECT HEADER ===== */
+/* HEADER */
 .project-header h2 {
   margin: 0;
   color: #2c3e50;
@@ -38,7 +112,7 @@ body {
   font-size: 14px;
 }
 
-/* ===== EMPLOYEE CARD ===== */
+/* EMPLOYEE */
 .employee-card {
   background: #f9fafc;
   padding: 15px;
@@ -52,7 +126,7 @@ body {
   color: #34495e;
 }
 
-/* ===== WORKLOG CARD ===== */
+/* WORKLOG */
 .result-card {
   background: #ffffff;
   padding: 15px;
@@ -62,7 +136,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* ===== GRID INFO ===== */
+/* GRID */
 .result-grid {
   display: flex;
   flex-wrap: wrap;
@@ -76,7 +150,7 @@ body {
   color: #333;
 }
 
-/* ===== DETAILS BOX ===== */
+/* DETAILS */
 .details-box {
   background: #f1f5f9;
   padding: 10px;
@@ -101,9 +175,10 @@ body {
   margin-bottom: 3px;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
+/* ===== BUTTON BASE ===== */
 button {
-  padding: 6px 12px;
+  padding: 8px 14px;
   margin-right: 8px;
   border: none;
   border-radius: 6px;
@@ -112,34 +187,48 @@ button {
   transition: 0.2s ease;
 }
 
-/* REJECT BUTTON */
-button:first-child {
-  background-color: #ff4d4f;
-  color: white;
-}
-
-button:first-child:hover {
-  background-color: #d9363e;
-}
-
-/* APPROVE BUTTON */
-button:last-child {
+/* ✅ APPROVE */
+.btn-approve {
   background-color: #52c41a;
   color: white;
 }
 
-button:last-child:hover {
+.btn-approve:hover {
   background-color: #389e0d;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ❌ REJECT */
+.btn-reject {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #d9363e;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
   .result-grid {
     flex-direction: column;
     gap: 5px;
   }
 
-  .container {
+  .content {
     padding: 15px;
   }
 }

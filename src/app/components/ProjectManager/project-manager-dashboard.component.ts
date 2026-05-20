@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+
 import { ActivatedRoute } from '@angular/router';
 import { ProjectManagerDashboardService } from '../../services/project-manager-dashboard.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RejectDialogComponent } from '../Pop Up/reject-dialog.component';
+import { DialogService } from '../../services/dialog.service';
+import { ConfirmDialogComponent } from '../Pop Up/confirm-dialog.component';
+
 
 @Component({
   selector: 'app-project-manager-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './project-manager-dashboard.component.html',
   styleUrls: ['./project-manager-dashboard.component.css']
 })
@@ -15,15 +22,32 @@ export class ProjectManagerDashboardComponent implements OnInit {
   data: any;
 
   constructor(private route: ActivatedRoute,
-                private service: ProjectManagerDashboardService
+                private router: Router,
+                private service: ProjectManagerDashboardService,
+                 private dialog: MatDialog,
+        
+                 private dialogService: DialogService
   ) {}
+  pmId!: number;
 
   ngOnInit(): void {
     this.route.data.subscribe(res => {
+       this.pmId = Number(localStorage.getItem('pmId'));
       this.data = res['pmData']; // 🔥 vient du resolver
       console.log(this.data);
     });
   }
+  selectedWorklogs: any[] = [];
+
+toggleSelection(worklog: any, event: any) {
+  if (event.target.checked) {
+    this.selectedWorklogs.push(worklog);
+  } else {
+    this.selectedWorklogs = this.selectedWorklogs.filter(
+      w => w.id !== worklog.id
+    );
+  }
+}
   parseDetails(detailsJson: string) {
   try {
     return JSON.parse(detailsJson);
@@ -31,71 +55,90 @@ export class ProjectManagerDashboardComponent implements OnInit {
     return [];
   }
 }
-openRejectDialog(project: any, employee: any, worklog: any) {
+rejectSelected() {
 
-  if (!worklog?.id) {
-    alert("ID worklog manquant !");
+  if (this.selectedWorklogs.length === 0) {
+    this.dialogService.openInfo("Info", "Aucun worklog sélectionné");
     return;
   }
 
-  const comment = prompt("Pourquoi ce worklog est rejeté ?");
+  const dialogRef = this.dialog.open(RejectDialogComponent, {
+    width: '400px'
+  });
 
-  if (!comment || comment.trim() === "") {
-    alert("Le commentaire est obligatoire !");
-    return;
-  }
+  dialogRef.afterClosed().subscribe(comment => {
 
-  this.service.rejectWorklog(worklog.id, comment).subscribe(() => {
+    if (!comment) return;
 
-    // ✅ mettre à jour le state (sans supprimer)
-    this.data = this.data.map((p: any) => {
-      if (p !== project) return p;
+    const ids = this.selectedWorklogs.map(w => w.id);
 
-      return {
+    this.service.rejectMultiple(ids, comment).subscribe(() => {
+
+      this.data = this.data.map((p: any) => ({
         ...p,
-        employees: p.employees.map((e: any) => {
-          if (e !== employee) return e;
+        employees: p.employees.map((e: any) => ({
+          ...e,
+          workLogs: e.workLogs.map((w: any) => {
+            if (!ids.includes(w.id)) return w;
 
-          return {
-            ...e,
-            workLogs: e.workLogs.map((w: any) => {
-              if (w.id !== worklog.id) return w;
+            return {
+              ...w,
+              status: 'Rejected',
+              rejectionComment: comment
+            };
+          })
+        }))
+      }));
 
-              return {
-                ...w,
-                status: 'Rejected',
-                rejectionComment: comment
-              };
-            })
-          };
-        })
-      };
+      this.selectedWorklogs = [];
+
+      this.dialogService.openInfo("Rejet", "Worklogs rejetés !");
     });
-
-    alert('❌ Worklog rejeté');
   });
 }
-approveWorklog(worklog: any) {
+approveSelected() {
 
-  if (!worklog?.id) {
-    alert("ID manquant !");
+  if (this.selectedWorklogs.length === 0) {
+    this.dialogService.openInfo("Info", "Aucun worklog sélectionné");
     return;
   }
 
-  if (!confirm('✅ Approuver ce worklog ?')) return;
-
-  this.service.approveWorklog(worklog.id).subscribe(() => {
-
-    // supprimer de la liste PM (car déjà envoyé au finance)
-    this.data = this.data.map((p: any) => ({
-      ...p,
-      employees: p.employees.map((e: any) => ({
-        ...e,
-        workLogs: e.workLogs.filter((w: any) => w.id !== worklog.id)
-      }))
-    }));
-
-    alert('✅ Worklog envoyé au Finance Manager');
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    width: '400px',
+    data: {
+      title: 'Confirmation',
+      message: `Approuver ${this.selectedWorklogs.length} worklogs ?`
+    }
   });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (!result) return;
+
+    const ids = this.selectedWorklogs.map(w => w.id);
+
+    this.service.approveMultiple(ids).subscribe(() => {
+
+      this.data = this.data.map((p: any) => ({
+        ...p,
+        employees: p.employees.map((e: any) => ({
+          ...e,
+          workLogs: e.workLogs.filter((w: any) => !ids.includes(w.id))
+        }))
+      }));
+
+      this.selectedWorklogs = [];
+
+      this.dialogService.openInfo("Succès", "Worklogs approuvés !");
+    });
+
+  });
+}
+logout() {
+  localStorage.clear(); // supprime token + user data
+  sessionStorage.clear();
+
+  // redirection vers login
+  this.router.navigate(['/login']);
 }
 }

@@ -1,6 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+
+
+import { authInterceptor } from './app/components/interceptors/auth.interceptor';
 import { authGuard } from './app/components/guards/auth.guard';
 
 
@@ -63,7 +66,16 @@ import { EditAdminComponent } from './app/components/admin/AdminManagment/edit-a
 import{ EditAdminAccountComponent } from './app/components/admin/AdminManagment/edit-admin-account.component';
 import { ViewAdminComponent } from './app/components/admin/AdminManagment/view-admin.component';
 import { ViewAdminResolver } from './app/components/admin/AdminManagment/view-admin.resolver';
-
+import { ProjectManagerStatisticsComponent } from './app/components/ProjectManager/project-manager-statistics.component';
+import { ProjectManagerStatisticsResolver } from './app/components/ProjectManager/project-manager-statistics.resolver';
+import { CreateTaskComponent } from './app/components/admin/Task/create-task.component';
+import { TaskListComponent } from './app/components/admin/Task/task-list.component';
+import { TaskResolver } from './app/components/admin/Task/task-resolver';
+import { EditTaskComponent } from './app/components/admin/Task/edit-task.component';
+import { ViewTaskComponent} from './app/components/admin/Task/view-task.component';
+import { ViewTaskResolver } from './app/components/admin/Task/view-task.resolver';
+import { FinanceManagerStatisticsComponent } from './app/components/FinanceManager/finance-manager-statistics.component';
+import { FinanceManagerStatisticsResolver } from './app/components/FinanceManager/finance-manager-statistics.resolver';
 
 
 import path from 'path';
@@ -74,6 +86,10 @@ import path from 'path';
 
 bootstrapApplication(App, {
   providers: [
+   provideHttpClient(withInterceptors([authInterceptor]) ,
+   ),
+  
+   
     provideRouter([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
@@ -81,7 +97,9 @@ bootstrapApplication(App, {
      
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'verify-code', component: VerifyCodeComponent },
-      { path: 'reset-password', component: ResetPasswordComponent,canActivate: [ResetPasswordGuard] },
+      { path: 'reset-password', component: ResetPasswordComponent ,
+        
+      },
        {
   path: 'dashboard',
   component: DashboardComponent,
@@ -200,13 +218,41 @@ bootstrapApplication(App, {
     admin: ViewAdminResolver
   }
 },
+{
+  path: 'project-manager-statistics/:id',
+  component: ProjectManagerStatisticsComponent,
+  resolve: {
+     data: ProjectManagerStatisticsResolver
+  }
+},
+{path: 'create-task', component: CreateTaskComponent },
+{path: 'task-list', component: TaskListComponent,
+  resolve: {
+      tasks: TaskResolver
+    }
+ },
+ { path: 'edit-task/:id', component:EditTaskComponent },
+ {
+  path: 'view-task/:id',
+  component: ViewTaskComponent,
+  resolve: { task: ViewTaskResolver }
+},
+{
+  path: 'finance-manager-statistics',
+  component: FinanceManagerStatisticsComponent,
+  resolve: {
+     data: FinanceManagerStatisticsResolver
+  }
+},
 { path: '**', redirectTo: 'login' },
+
+
 
   
 
  
     ], withHashLocation()),
-    provideHttpClient(),
+    
     
      
   ]

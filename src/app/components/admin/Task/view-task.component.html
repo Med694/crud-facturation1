@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div class="card">
+
+    <h2> Détails de la tâche</h2>
+
+    <!-- 🔹 ID -->
+    <div class="info">
+      <label>ID :</label>
+      <span>{{ task?.id }}</span>
+    </div>
+
+    <!-- 🔹 TITLE -->
+    <div class="info">
+      <label>Titre :</label>
+      <span>{{ task?.title }}</span>
+    </div>
+
+    <!-- 🔹 PROJECT -->
+    <div class="info">
+      <label>Projet :</label>
+
+      <span *ngIf="task?.project?.name; else noProject">
+        {{ task.project.name }}
+      </span>
+
+      <ng-template #noProject>
+        <span class="badge-danger">Non assigné</span>
+      </ng-template>
+
+    </div>
+
+    <!-- 🔹 BUTTON -->
+    <div class="actions">
+
+      <button class="btn gray" (click)="cancel()">
+         Retour
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

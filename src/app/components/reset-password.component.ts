@@ -1,67 +1,72 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent {
-
-  model = {
-    email: '',
-    password: '',
-    confirmPassword: ''
-  };
-
-  message = '';
+export class ResetPasswordComponent implements OnInit {
+  email = '';
+  code = '';
+  password = '';
+  confirmPassword = '';
   isError = false;
-  loading = false;
+  message = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+  // Récupération depuis sessionStorage
+  const storedEmail = sessionStorage.getItem('resetEmail');
+  const storedCode = sessionStorage.getItem('resetCode');
+
+  if (storedEmail && storedCode) {
+    this.email = storedEmail;
+    this.code = storedCode;
+    // Ne pas supprimer tout de suite (pour gérer un éventuel rechargement)
+  } else {
+    // Fallback sur l'état du router (au cas où sessionStorage échoue)
+    const nav = this.router.getCurrentNavigation();
+    const state = nav?.extras?.state as { email: string; code: string };
+    if (state?.email && state?.code) {
+      this.email = state.email;
+      this.code = state.code;
+    } else {
+      // Redirection si aucune donnée
+      this.router.navigate(['/forgot-password']);
+    }
+  }
+}
 
   onSubmit() {
-
-    if (!this.model.email || !this.model.password || !this.model.confirmPassword) {
-      this.message = "Tous les champs sont obligatoires";
+    if (this.password !== this.confirmPassword) {
+      this.message = 'Passwords do not match';
       this.isError = true;
       return;
     }
 
-    if (this.model.password !== this.model.confirmPassword) {
-      this.message = "Les mots de passe ne correspondent pas";
-      this.isError = true;
-      return;
-    }
-
-    this.loading = true;
-
-    const url = `https://localhost:7002/api/auth/reset-password?email=${this.model.email}&newPassword=${this.model.password}`;
-
-    this.http.post<any>(url, {}).subscribe({
+    this.authService.resetPassword(this.email, this.code, this.password).subscribe({
       next: (res) => {
-        this.message = res.message + " | Role: " + res.role;
+        this.message = 'Password changed successfully';
         this.isError = false;
-        this.loading = false;
-
-        // 🔐 Nettoyage
-        localStorage.removeItem('resetEmail');
-
-        // ✅ Redirection vers login
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 1500);
+        sessionStorage.removeItem('resetEmail');
+        sessionStorage.removeItem('resetCode');
+        localStorage.removeItem('email'); // nettoyage
+        setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (err) => {
-        this.message = err.error || "Erreur lors du reset";
+        this.message = err.error || 'Reset failed';
         this.isError = true;
-        this.loading = false;
       }
     });
   }

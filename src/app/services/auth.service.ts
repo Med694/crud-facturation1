@@ -32,11 +32,15 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/forgot-password`, { email });
   }
 
-  verifyCode(email: string, code: string){
-    return this.http.post(`${this.apiUrl}/verify-code?email=${email}&code=${code}`, {});
-  }
+  verifyCode(email: string, code: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}/verify-code?email=${email}&code=${code}`, null);
+}
 
-  resetPassword(email: string, newPassword: string){
-    return this.http.post(`${this.apiUrl}/reset-password?email=${email}&newPassword=${newPassword}`, {});
+   resetPassword(email: string, code: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, {
+      email,
+      code,
+      newPassword
+    });
   }
 }

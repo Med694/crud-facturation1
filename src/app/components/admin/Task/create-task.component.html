@@ -1,0 +1,46 @@
+<div class="page">
+
+  <div class="form-card">
+
+    <h2> Créer une tâche</h2>
+
+    <!-- 🔹 TITLE -->
+    <div class="form-group">
+      <label>Titre de la tâche</label>
+      <input
+        type="text"
+        [(ngModel)]="formData.title"
+        placeholder="Entrer le titre de la tâche"
+      />
+    </div>
+
+    <!-- 🔹 PROJECT SELECT -->
+    <div class="form-group">
+      <label>Projet</label>
+      <select [(ngModel)]="formData.projectId">
+
+        <option [ngValue]="null">-- Sélectionner un projet --</option>
+
+        <option *ngFor="let p of projects" [ngValue]="p.id">
+          {{ p.name }}
+        </option>
+
+      </select>
+    </div>
+
+    <!-- 🔹 ACTIONS -->
+    <div class="actions">
+
+      <button class="btn green" (click)="submit()">
+         Enregistrer
+      </button>
+
+      <button class="btn gray" (click)="cancel()">
+         Annuler
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

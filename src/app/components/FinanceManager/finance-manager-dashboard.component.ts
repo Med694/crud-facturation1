@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FinanceManagerDashboardService } from '../../services/finance-manager-dashboard.service';
-import { ActivatedRoute } from '@angular/router';
+
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-finance-manager-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './finance-manager-dashboard.component.html',
   styleUrls: ['./finance-manager-dashboard.component.css']
   
@@ -15,7 +19,7 @@ export class FinanceManagerDashboardComponent implements OnInit {
 
   worklogs: any[] = [];
 
-  constructor(private service: FinanceManagerDashboardService, private route: ActivatedRoute) {}
+  constructor(private service: FinanceManagerDashboardService, private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
   this.worklogs = this.route.snapshot.data['worklogs'];
@@ -41,4 +45,9 @@ openInvoice(clientId: number) {
     window.open(url);
   });
 }
+logout() {
+  localStorage.clear(); // ou token remove
+  this.router.navigate(['/login']); // si router injecté
+}
+
 }

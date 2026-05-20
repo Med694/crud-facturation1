@@ -1,0 +1,109 @@
+<div class="dashboard-container">
+    <!-- SIDEBAR -->
+  <aside class="sidebar">
+  <h2 class="logo">FIN<span>LOGIK</span></h2>
+
+ <ul class="menu">
+ <li
+  [routerLink]="['/project-manager-dashboard', pmId]"
+  routerLinkActive="active-item">
+  Dashboard
+</li>
+  <li
+  [routerLink]="['/project-manager-statistics', pmId]"
+  routerLinkActive="active-item">
+  Statistics
+</li>
+  
+</ul>
+  <button class="logout" (click)="logout()">
+    Logout
+  </button>
+</aside>
+
+  <h1>Project Manager Statistics</h1>
+
+  <div class="stats-grid">
+
+    <div class="card">
+      <h2>Total WorkLogs</h2>
+      <p>{{ stats.totalWorkLogs }}</p>
+    </div>
+
+    <div class="card">
+      <h2>Pending</h2>
+      <p>{{ stats.pendingWorkLogs }}</p>
+    </div>
+
+    <div class="card">
+      <h2>Approved</h2>
+      <p>{{ stats.approvedWorkLogs }}</p>
+    </div>
+
+    <div class="card">
+      <h2>Rejected</h2>
+      <p>{{ stats.rejectedWorkLogs }}</p>
+    </div>
+
+  </div>
+  <div class="best-employees">
+
+  <h2>Best Employees</h2>
+
+  <table class="employees-table">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Total WorkLogs</th>
+        <th>Approved</th>
+         <th>Rejected</th>
+          <th>Pending</th>
+        <th>Total Hours</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let emp of bestEmployees">
+
+        <td>{{ emp.fullName }}</td>
+
+        <td>{{ emp.email }}</td>
+
+        <td>{{ emp.totalWorkLogs }}</td>
+        <td>{{ emp.approvedCount }}</td>
+          <td>{{ emp.rejectedCount }}</td>
+           <td>{{ emp.pendingCount }}</td>
+             <td>{{ emp.totalHours }}</td>
+
+        
+
+      
+
+       
+
+        <td
+          [ngClass]="{
+            'good-score': emp.score >= 300,
+            'bad-score': emp.score < 300
+          }">
+
+          {{ emp.score }}
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+  
+
+</div>

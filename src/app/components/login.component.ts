@@ -36,6 +36,7 @@ export class LoginComponent {
         console.log("Response =", res);
 
         // ✅ stockage
+        console.log('Token brut reçu :', res.token);
         localStorage.setItem('token', res.token || '');
         localStorage.setItem('role', res.role || '');
         localStorage.setItem('userId', res.userId || '');

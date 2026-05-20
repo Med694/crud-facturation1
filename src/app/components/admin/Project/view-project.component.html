@@ -14,11 +14,26 @@
         <p><strong>Nom :</strong> {{ project.projectManager.fullName }}</p>
       </div>
 
+
       <ng-template #noPm>
         <span class="status inactive">Non assigné</span>
       </ng-template>
     </div>
+     <!-- 🔥 AJOUT ICI -->
+  
+   <h3>Tâches assignées</h3>
 
+  <div *ngIf="project.tasks?.length > 0; else noTasksBlock">
+  <ul>
+    <li *ngFor="let task of project.tasks">
+      {{ task.title }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #noTasksBlock>
+  <p>Aucune tâche assignée</p>
+</ng-template>
     <button class="cancel-btn" (click)="cancel()">
   Retour
 </button>

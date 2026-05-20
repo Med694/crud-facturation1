@@ -8,6 +8,17 @@
       <label>Nom du projet</label>
       <input [(ngModel)]="project.name" />
     </div>
+  <div class="form-group">
+  <select multiple [(ngModel)]="selectedTasks">
+  <option *ngFor="let t of tasks"
+          [ngValue]="t.id"
+        >
+
+    {{ t.title }}
+
+  </option>
+</select>
+</div>
 
     <!-- Project Manager -->
     <div class="form-group">

@@ -1,6 +1,20 @@
 /* CONTAINER */
 .container {
+  display: flex;
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+.main-content {
+  flex: 1;
   padding: 25px;
+  overflow-x: hidden;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+  flex: 1;              /* IMPORTANT */
+  overflow-y: auto;
+  margin: 0;
 }
 
 /* EMPLOYEE CARD */
@@ -21,7 +35,7 @@
 /* PROJECTS GRID */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 15px;
 }
 
@@ -86,28 +100,68 @@
   font-size: 13px;
   color: #555;
 }
-/* CUSTOM BUTTON */
-.upload-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #4cafef, #2f80ed);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 93vh;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #7ac142;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: #222;
+}
+
+/* MENU */
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 12px;
+  margin-bottom: 8px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  color: #555;
+  border-radius: 8px;
   transition: 0.3s;
-  text-align: center;
-  width: 100%;
 }
 
-/* HOVER EFFECT */
-.upload-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(47, 128, 237, 0.3);
+.menu li:hover {
+  background: #f1f1f1;
 }
 
-/* HIDE DEFAULT INPUT */
-.upload-btn input[type="file"] {
-  display: none;
+.active-item {
+  background: #7ac142;
+  color: white !important;
+  font-weight: 500;
 }
+
+/* LOGOUT */
+.logout {
+  padding: 10px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 10px; /* fallback sécurité */
+}
+
+.logout:hover {
+  background: #ddd;
+}
+
+

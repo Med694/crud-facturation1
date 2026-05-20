@@ -20,6 +20,8 @@ export class CreateProjectComponent implements OnInit {
   };
 
   projectManagers: any[] = [];
+  tasks: any[] = [];
+selectedTasks: number[] = [];
 
   constructor(
     private service: ProjectService,
@@ -30,6 +32,10 @@ export class CreateProjectComponent implements OnInit {
     this.service.getProjectManagers().subscribe((res: any) => {
       this.projectManagers = res;
     });
+      // 🔹 TASKS
+  this.service.getTasks().subscribe((res: any) => {
+    this.tasks = res;
+  });
   }
 
   submit() {
@@ -38,13 +44,17 @@ export class CreateProjectComponent implements OnInit {
     alert("⚠️ Nom obligatoire");
     return;
   }
+   const payload = {
+    ...this.formData,
+    taskIds: this.selectedTasks
+  };
 
  /* if (!this.formData.projectManagerId) {
     alert("⚠️ Veuillez sélectionner un Project Manager");
     return;
   } */
 
-  this.service.createProject(this.formData).subscribe({
+   this.service.createProject(payload).subscribe({
     next: () => {
       alert("✅ Projet créé !");
       this.router.navigate(['/project-list']);

@@ -1,45 +1,74 @@
-<div class="container">
+<div class="layout">
 
-  <div *ngFor="let p of data" class="project-card">
-    
-    <!-- HEADER PROJET -->
-    <div class="project-header">
-      <h2>{{ p.project }}</h2>
-      <p><strong>Client:</strong> {{ p.client }}</p>
-    </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+  <h2 class="logo">FIN<span>LOGIK</span></h2>
 
-    <!-- EMPLOYEES -->
-    <div *ngFor="let e of p.employees" class="employee-card">
-      
-      <h4>{{ e.fullName }} ({{ e.email }})</h4>
+ <ul class="menu">
+  <li class="active-item">Dashboard</li>
+   <li
+  [routerLink]="['/project-manager-statistics', pmId]"
+  routerLinkActive="active-item">
+  Statistics
+</li>
+  
+</ul>
+  <button class="logout" (click)="logout()">
+    Logout
+  </button>
+</aside>
 
-      <!-- WORKLOGS -->
-      <div *ngFor="let w of e.workLogs" class="result-card">
+  <!-- MAIN -->
+  <div class="main">
+    <div  *ngIf="selectedWorklogs.length > 0">
 
-        <div class="result-grid">
-          <p><strong>Hourly Rate:</strong> {{ w.hourlyRate }}</p>
-          <p><strong>Total Hours:</strong> {{ w.totalHours }}</p>
-          <p><strong>Planned Hours:</strong> {{ w.plannedHours }}</p>
-        </div>
-
-        <!-- DETAILS -->
-        <div class="details-box">
-          <p><strong>Détails :</strong></p>
-          <ul>
-            <li *ngFor="let d of parseDetails(w.detailsJson)">
-              {{ d.date }} → {{ d.hours }} h
-            </li>
-          </ul>
-        </div>
-
-        <!-- ACTIONS -->
-        <div style="margin-top: 10px;">
-          <button (click)="openRejectDialog(p, e, w)">
-   Rejected
+    <button class="btn-approve" (click)="approveSelected()">
+   Approve Selected ({{ selectedWorklogs.length }})
 </button>
-          <button (click)="approveWorklog(w)">
-             Approved
-          </button>
+
+<button class="btn-reject" (click)="rejectSelected()">
+   Reject Selected
+</button>
+
+  </div>
+
+    <div class="content">
+
+      <div *ngFor="let p of data" class="project-card">
+
+        <div class="project-header">
+          <h2>{{ p.project }}</h2>
+          <p><strong>Client:</strong> {{ p.client }}</p>
+        </div>
+
+        <div *ngFor="let e of p.employees" class="employee-card">
+
+          <h4>{{ e.fullName }} ({{ e.email }})</h4>
+
+          <div *ngFor="let w of e.workLogs" class="result-card">
+            <!-- ✅ CHECKBOX -->
+          <input type="checkbox"
+         (change)="toggleSelection(w, $event)" />
+
+            <div class="result-grid">
+              <p><strong>Task:</strong> {{ w.task }}</p>
+              <p><strong>Hourly Rate:</strong> {{ w.hourlyRate }}</p>
+              <p><strong>Total Hours:</strong> {{ w.totalHours }}</p>
+              <p><strong>Planned Hours:</strong> {{ w.plannedHours }}</p>
+            </div>
+
+            <div class="details-box">
+              <p><strong>Détails :</strong></p>
+              <ul>
+                <li *ngFor="let d of parseDetails(w.detailsJson)">
+                  {{ d.date }} → {{ d.hours }} h
+                </li>
+              </ul>
+            </div>
+
+            
+
+          </div>
         </div>
 
       </div>

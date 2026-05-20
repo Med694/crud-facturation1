@@ -64,9 +64,9 @@ export class EmployeeService {
   getFullDetails(id: number) {
   return this.http.get(`https://localhost:7002/api/employee/details-full/${id}`);
 }
-importExcel(formData: FormData) {
-  return this.http.post<any[]>(
-    `${this.apiUrl}/import-excel`,
+importExcelGlobal(formData: FormData) {
+  return this.http.post(
+    `${this.apiUrl}/import-excel-global`,
     formData
   );
 }
@@ -74,6 +74,12 @@ getWorkLogs(employeeId: number, projectId: number) {
   return this.http.get(
     `https://localhost:7002/api/Employee/worklogs/${employeeId}/${projectId}`
   );
+  
 }
+ getTasksByProject(projectId: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/tasks-by-project/${projectId}`
+    );
+  }
   
 }

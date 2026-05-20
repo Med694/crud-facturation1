@@ -1,44 +1,68 @@
-<h2> Finance Manager Dashboard</h2>
+<div class="layout">
 
-<div class="container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">FIN<span>LOGIK</span></h2>
 
-  <div *ngFor="let w of worklogs" class="project-card">
+    <ul class="menu">
+     <li class="active-item">Dashboard</li>
+      <li routerLink="/finance-manager-statistics" routerLinkActive="active-item">Statistics</li>
+    </ul>
 
-    <div class="employee-card">
-      <h4> {{ w.employee }}</h4>
+    <button class="logout" (click)="logout()">
+      Logout
+    </button>
+  </aside>
 
-      <p><strong>Email:</strong> {{ w.email }}</p>
-      <p><strong>Project:</strong> {{ w.project }}</p>
-      <p><strong>Client:</strong> {{ w.client }}</p>
-      <p><strong>Project Manager:</strong> {{ w.projectManager }}</p>
-    </div>
+  <!-- MAIN -->
+  <div class="main">
 
-    <div class="result-card">
+    <h2>Finance Manager Dashboard</h2>
 
-      <div class="result-grid">
-        <p><strong> Hourly Rate:</strong> {{ w.hourlyRate }}</p>
-        <p><strong> Total Hours:</strong> {{ w.totalHours }}</p>
-        <p><strong> Planned Hours:</strong> {{ w.plannedHours }}</p>
-        <p><strong>Total Cost:</strong> {{ w.totalCost }}</p>
+    <div class="container">
+
+      <div *ngFor="let w of worklogs" class="project-card">
+
+        <div class="employee-card">
+          <h4>{{ w.employee }}</h4>
+
+          <p><strong>Email:</strong> {{ w.email }}</p>
+          <p><strong>Project:</strong> {{ w.project }}</p>
+          <p><strong>Client:</strong> {{ w.client }}</p>
+          <p><strong>Project Manager:</strong> {{ w.projectManager }}</p>
+          <p><strong>Task:</strong> {{ w.task }}</p>
+        </div>
+
+        <div class="result-card">
+
+          <div class="result-grid">
+            <p><strong>Hourly Rate:</strong> {{ w.hourlyRate }}</p>
+            <p><strong>Total Hours:</strong> {{ w.totalHours }}</p>
+            <p><strong>Planned Hours:</strong> {{ w.plannedHours }}</p>
+            <p><strong>Total Cost:</strong> {{ w.totalCost }}</p>
+          </div>
+
+          <div class="details-box">
+            <p><strong>Details:</strong></p>
+
+            <ul>
+              <li *ngFor="let d of parseDetails(w.detailsJson)">
+                {{ d.date }} — {{ d.hours }}h
+              </li>
+            </ul>
+          </div>
+
+          <button (click)="openInvoice(w.clientId)">
+            Open Invoice
+          </button>
+
+        </div>
+
+        <hr>
+
       </div>
 
-      <div class="details-box">
-        <p><strong> Details:</strong></p>
-
-        <ul>
-          <li *ngFor="let d of parseDetails(w.detailsJson)">
-            {{ d.date }} — {{ d.hours }}h
-          </li>
-        </ul>
-      </div>
-
-      <button (click)="openInvoice(w.clientId)">
-  Open Invoice
-</button> 
-
     </div>
-
-    <hr>
 
   </div>
 

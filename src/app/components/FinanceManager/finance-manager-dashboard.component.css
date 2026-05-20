@@ -1,36 +1,137 @@
-
-/* ===== GLOBAL CONTAINER ===== */
-.container {
-  padding: 25px;
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f7fb;
+}
+
+/* ===== LAYOUT ===== */
+.layout {
+  display: flex;
   min-height: 100vh;
 }
 
-/* ===== PAGE TITLE ===== */
-h2 {
-  text-align: center;
-  margin: 20px 0 30px;
-  color: #2c3e50;
-  font-weight: 600;
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 230px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+ 
+  box-sizing: border-box;
 }
 
-/* ===== MAIN CARD (WORKLOG WRAPPER) ===== */
+/* LOGO */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #7ac142;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: #222;
+}
+
+/* MENU */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color: #555;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.menu li {
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  color: #555;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu li:hover {
+  background: #f1f1f1;
+}
+
+/* ACTIVE ITEM */
+.active-item {
+  background: #7ac142;
+  color: white !important;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+/* LOGOUT */
+.logout {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  background:  #7ac142;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #ddd;
+}
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: 230px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 230px);
+  min-height: 100vh;
+}
+
+/* TITLE */
+h2 {
+  margin: 20px 0;
+  padding: 0 25px;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  padding: 25px;
+  background: transparent;
+  flex: 1;
+}
+
+/* ===== CARD ===== */
 .project-card {
   background: #ffffff;
   padding: 20px;
   border-radius: 14px;
   margin-bottom: 20px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  transition: all 0.25s ease;
-  border-left: 6px solid #1890ff;
+  border-left: 6px solid #52c41a;
+  transition: 0.25s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
 }
 
-/* ===== EMPLOYEE CARD ===== */
+
+/* ===== EMPLOYEE ===== */
 .employee-card {
   background: #f9fafc;
   padding: 15px;
@@ -44,14 +145,13 @@ h2 {
   color: #2c3e50;
 }
 
-/* ===== TEXT ===== */
 .employee-card p {
   margin: 4px 0;
   font-size: 14px;
   color: #444;
 }
 
-/* ===== RESULT CARD ===== */
+/* ===== RESULT ===== */
 .result-card {
   background: #ffffff;
   margin-top: 15px;
@@ -61,7 +161,7 @@ h2 {
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* ===== RESULT GRID ===== */
+/* GRID */
 .result-grid {
   display: flex;
   flex-wrap: wrap;
@@ -75,7 +175,7 @@ h2 {
   color: #333;
 }
 
-/* ===== DETAILS BOX ===== */
+/* DETAILS */
 .details-box {
   background: #f1f5f9;
   padding: 10px;
@@ -100,7 +200,7 @@ h2 {
   margin-bottom: 3px;
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 button {
   margin-top: 12px;
   padding: 8px 14px;
@@ -117,13 +217,27 @@ button:hover {
   background-color: #0f70d1;
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .container {
-    padding: 15px;
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    margin-left: 0;
   }
 
   .result-grid {
     flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
   }
 }

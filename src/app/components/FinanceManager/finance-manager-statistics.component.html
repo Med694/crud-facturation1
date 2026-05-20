@@ -1,0 +1,125 @@
+<div class="dashboard-container">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <h2 class="logo">
+      FIN<span>LOGIK</span>
+    </h2>
+
+    <ul class="menu">
+        <li routerLink="/finance-manager-dashboard" routerLinkActive="active-item">Dashboard</li>
+    
+      <li class="active-item">Statistics</li>
+     </ul>
+      
+
+    <button class="logout" (click)="logout()">
+      Logout
+    </button>
+
+  </aside>
+
+  <!-- ===== TITLE ===== -->
+  <h1 class="dashboard-title">
+    Finance Manager Dashboard
+  </h1>
+
+  <!-- ===== STATS ===== -->
+  <div class="dashboard">
+
+    <div class="card">
+      <div class="card-title">
+        Total Approved Worklogs
+      </div>
+
+      <div class="card-value">
+        {{stats.totalWorkLogsApproved}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        Total Projects
+      </div>
+
+      <div class="card-value">
+        {{stats.totalProjects}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        Total Clients
+      </div>
+
+      <div class="card-value">
+        {{stats.totalClients}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        Total Employees
+      </div>
+
+      <div class="card-value">
+        {{stats.totalEmployees}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        Total Revenue
+      </div>
+
+      <div class="card-value">
+        {{stats.totalRevenue}} €
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== TOP CLIENTS ===== -->
+  <h2 class="section-title">
+    Top Clients
+  </h2>
+
+  <table class="employees-table">
+
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Total Projects</th>
+        <th>Total Employees</th>
+        <th>Total Revenue</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let client of topClients">
+
+        <td>
+          {{client.clientName}}
+        </td>
+
+        <td>
+          {{client.totalProjects}}
+        </td>
+
+        <td>
+          {{client.totalEmployees}}
+        </td>
+
+        <td>
+          {{client.totalRevenue}} €
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
