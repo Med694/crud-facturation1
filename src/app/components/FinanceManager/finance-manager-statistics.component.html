@@ -24,6 +24,27 @@
   <h1 class="dashboard-title">
     Finance Manager Dashboard
   </h1>
+ <div class="filters">
+
+  <!-- Month -->
+  <select [(ngModel)]="selectedMonth">
+    <option *ngFor="let m of months" [value]="m.value">
+      {{ m.label }}
+    </option>
+  </select>
+
+  <!-- Year -->
+  <select [(ngModel)]="selectedYear">
+    <option *ngFor="let y of years" [value]="y">
+      {{ y }}
+    </option>
+  </select>
+
+  <button mat-raised-button color="primary" (click)="applyFilter()">
+    Filter
+  </button>
+
+</div>
 
   <!-- ===== STATS ===== -->
   <div class="dashboard">
@@ -121,5 +142,18 @@
     </tbody>
 
   </table>
+  <div style="width: 700px; margin: auto; margin-top: 40px;">
+  <canvas id="financeChart"></canvas>
+</div>
+<h3>Top Clients by Revenue</h3>
+
+<canvas id="financeClientChart"></canvas>
+<h3 class="section-title">
+  Projects Cost (By Month)
+</h3>
+
+<div>
+  <canvas id="projectCostChart"></canvas>
+</div>
 
 </div>

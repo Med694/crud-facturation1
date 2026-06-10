@@ -117,19 +117,60 @@ approveSelected() {
 
     const ids = this.selectedWorklogs.map(w => w.id);
 
-    this.service.approveMultiple(ids).subscribe(() => {
+    this.service.approveMultiple(ids).subscribe({
 
-      this.data = this.data.map((p: any) => ({
-        ...p,
-        employees: p.employees.map((e: any) => ({
-          ...e,
-          workLogs: e.workLogs.filter((w: any) => !ids.includes(w.id))
-        }))
-      }));
+      next: (res: any) => {
 
-      this.selectedWorklogs = [];
+  const rejectedIds = res.rejectedIds || [];
+  const approvedIds = res.approvedIds || [];
 
-      this.dialogService.openInfo("Succès", "Worklogs approuvés !");
+  const hasRejected = rejectedIds.length > 0;
+
+  // 🔄 UPDATE UI
+  this.data = this.data.map((p: any) => ({
+    ...p,
+    employees: p.employees.map((e: any) => ({
+      ...e,
+      workLogs: e.workLogs.map((w: any) => {
+
+        if (rejectedIds.includes(w.id)) {
+          return { ...w, status: 'Rejected' };
+        }
+
+        if (approvedIds.includes(w.id)) {
+          return { ...w, status: 'Approved' };
+        }
+
+        return w;
+      })
+    }))
+  }));
+
+  this.selectedWorklogs = [];
+
+  // 🎯 POPUP GLOBAL
+  if (hasRejected) {
+    this.dialogService.openInfo(
+      "Attention",
+      "Some worklogs are rejected"
+    );
+  } else {
+    this.dialogService.openInfo(
+      "Succès",
+      "All worklogs approved"
+    );
+  }
+},
+
+      error: (err) => {
+
+        console.error("Approval blocked:", err.error);
+
+        this.dialogService.openInfo(
+          "Bloqué par l'IA",
+          err.error?.message || "Validation refusée par le système"
+        );
+      }
     });
 
   });

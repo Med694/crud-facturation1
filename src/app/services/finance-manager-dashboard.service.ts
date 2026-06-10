@@ -19,5 +19,9 @@ export class FinanceManagerDashboardService {
     responseType: 'blob'
   });
 }
+sendInvoice(clientId: number): Observable<any> {
+  return this.http.post(`https://localhost:7002/api/finance/invoice/client/${clientId}/send`, {});
+}
+
 
 }

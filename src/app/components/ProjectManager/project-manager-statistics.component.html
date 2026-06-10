@@ -22,6 +22,25 @@
 </aside>
 
   <h1>Project Manager Statistics</h1>
+  <div class="filters">
+
+  <select [(ngModel)]="selectedMonth">
+    <option *ngFor="let m of months" [value]="m.value">
+      {{m.label}}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selectedYear">
+    <option *ngFor="let y of years" [value]="y">
+      {{y}}
+    </option>
+  </select>
+
+  <button (click)="applyFilter()">
+    Filter
+  </button>
+
+</div>
 
   <div class="stats-grid">
 
@@ -46,6 +65,7 @@
     </div>
 
   </div>
+ 
   <div class="best-employees">
 
   <h2>Best Employees</h2>
@@ -101,6 +121,13 @@
 
   </table>
 
+</div>
+ <div style="width: 500px; margin: auto;">
+  <canvas id="worklogsChart"></canvas>
+</div>
+<!-- ⭐ HORIZONTAL BAR CHART EMPLOYEES -->
+<div style="width: 700px; margin: auto; margin-top: 50px;">
+ <canvas id="employeesChart"></canvas>
 </div>
 
 

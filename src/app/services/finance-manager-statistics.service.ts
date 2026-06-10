@@ -11,16 +11,24 @@ export class FinanceManagerStatisticsService {
   constructor(private http: HttpClient) {}
 
   // dashboard stats
-  getDashboardFull(): Observable<any> {
-    return this.http.get<any>(
-      `${this.apiUrl}/finance/dashboard/full`
-    );
+ getDashboardFull(month?: number, year?: number): Observable<any> {
+  let url = `${this.apiUrl}/finance/dashboard/full`;
+
+  if (month && year) {
+    url += `?month=${month}&year=${year}`;
   }
 
+  return this.http.get<any>(url);
+}
+
   // top clients
-  getTopClients(): Observable<any> {
-    return this.http.get<any>(
-      `${this.apiUrl}/finance/top-clients`
-    );
+ getTopClients(month?: number, year?: number): Observable<any> {
+  let url = `${this.apiUrl}/finance/top-clients`;
+
+  if (month && year) {
+    url += `?month=${month}&year=${year}`;
   }
+
+  return this.http.get<any>(url);
+}
 }

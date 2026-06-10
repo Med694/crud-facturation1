@@ -39,8 +39,8 @@ export class CreateEmployeeDetailsComponent implements OnInit {
     this.projects = res;
   });
 
-  const stored = JSON.parse(localStorage.getItem('selectedTasks') || '[]');
-  this.selectedTaskIds = stored.map((t: any) => t.id);
+ 
+  this.selectedTaskIds = [];
 }
 
   onProjectChange() {
@@ -59,34 +59,18 @@ export class CreateEmployeeDetailsComponent implements OnInit {
       });
   });
 
-  // reload depuis localStorage
-  const stored = JSON.parse(localStorage.getItem('selectedTasks') || '[]');
-  this.selectedTaskIds = stored.map((t: any) => t.id);
+
 }
   toggleTask(task: any) {
 
-  let storedTasks = JSON.parse(
-    localStorage.getItem('selectedTasks') || '[]'
-  );
+const exists = this.selectedTaskIds.includes(task.id);
 
-  const exists = storedTasks.some((t: any) => t.id === task.id);
-
-  if (!exists) {
-    storedTasks.push(task);
+ if (exists) {
+    this.selectedTaskIds = this.selectedTaskIds.filter(id => id !== task.id);
   } else {
-    storedTasks = storedTasks.filter(
-      (t: any) => t.id !== task.id
-    );
+    this.selectedTaskIds.push(task.id);
   }
 
-  localStorage.setItem(
-    'selectedTasks',
-    JSON.stringify(storedTasks)
-  );
-
-  this.selectedTaskIds = storedTasks.map(
-    (t: any) => t.id
-  );
 }
 
   submit() {
@@ -120,13 +104,12 @@ export class CreateEmployeeDetailsComponent implements OnInit {
       return;
     }
 
-    // 🔥 NOUVEAU : envoi direct au backend (plus de localStorage)
-    const storedTasks = JSON.parse(localStorage.getItem('selectedTasks') || '[]');
+    
 
 const payload = {
   ...this.formData,
   projectIds: this.selectedProjectIds,
-  taskIds: storedTasks.map((t: any) => t.id)
+  taskIds: this.selectedTaskIds   // ✅ direct
 };
 
     this.service.createFull(payload).subscribe({
